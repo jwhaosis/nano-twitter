@@ -1,0 +1,6 @@
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'activerecord'
+gem 'pg'
+gem 'pry-byebug'
+gem 'rake'
