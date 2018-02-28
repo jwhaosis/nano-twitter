@@ -1,53 +1,72 @@
 require 'sinatra'
+require_relative '../models/user'
+require 'byebug'
+require_relative '../helpers/sessions_helper'
+require 'sinatra/flash'
 
-class UsersController < Sinatra::Base
-  post 'user/login' do
-    @user = User.find_by_email(params[:email])
-    if @user.password_digest == params[:password_digest]
-      give_token
-    else
-      redirect_to home_url
-    end
+helpers SessionsHelper
+
+# go to sign up page
+get '/user/register' do
+  erb :'/app_pages/signup'
+end
+
+# create new user
+post '/user/register' do
+  @user = User.new(params[:user])
+
+  if @user.save
+    log_in @user
+    redirect '/'
+  else
+    redirect '/user/register'
   end
+end
 
-  post 'user/create' do
-    @user = User.new(params[:user])
-    if @user.save
-      log_in @user
-      flash[:success] = "Welcome to Twitter!"
-      erb :"/user"
-    else
-      flash[:error] = "Please complete all fields"
-      render 'new'
-    end
+get '/user/login' do
+  if logged_in?
+    redirect '/user_pages/user'
+  else
+    redirect '/app_pages/login'
   end
+end
 
-  get 'user/register' do
-    erb :"app_pages/login"
+# create new user
+post '/user/login' do
+  email = params[:session][:email].downcase
+  user = User.exists?(email: email) ? User.find_by(email: email) : nil
+  if user && user.authenticate(params[:session][:password])
+    log_in(user)
+    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+    erb :"/user_pages/self"
+  else
+    flash.now[:error] = 'Invalid email/password combination'
+    erb :"/app_pages/login"
   end
+end
 
-  get '/user' do
-    erb :"user_pages/self"
-  end
+get '/user' do
+  erb :"user_pages/self"
+end
 
-  get '/user/:number' do
-    erb :"user_pages/user", :user_num => :number
-  end
+post '/user/:id/follow' do
 
-  post '/user/:number/follow' do
+end
 
-  end
+get '/user/:id/following' do
+  erb :"user_pages/user_following", :user_id => :id
+end
 
-  get '/user/:number/following' do
-    erb :"user_pages/user_following", :user_num => :number
-  end
-
-  get '/user/:number/follwers' do
-    erb :"user_pages/user_followers", :user_num => :number
-  end
+get '/user/:id/followers' do
+  erb :"user_pages/user_followers", :user_id => :id
+end
 
 
-  get '/user/:number/tweets' do
-    erb :"user_pages/user_tweet", :user_num => :number
-  end
+get '/user/:id/tweets' do
+  erb :"user_pages/user_tweet", :user_id => :id
+end
+
+get '/user/:id' do
+  @user = User.find(params[:id])
+  erb :"user_pages/user", :user_id => :id
 end
