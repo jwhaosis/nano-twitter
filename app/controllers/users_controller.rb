@@ -1,7 +1,7 @@
 require 'sinatra'
 require_relative '../models/user'
 require 'byebug'
-require_relative '../helpers/sessions_helper'
+# require_relative '../helpers/sessions_helper'
 require 'sinatra/flash'
 
 helpers SessionsHelper
@@ -25,23 +25,23 @@ end
 
 get '/user/login' do
   if logged_in?
-    redirect '/user_pages/user'
+    redirect '/'
   else
-    redirect '/app_pages/login'
+    erb :'/app_pages/login'
   end
 end
 
 # create new user
 post '/user/login' do
-  email = params[:session][:email].downcase
+  email = params[:sessions][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
-  if user && user.authenticate(params[:session][:password])
+  if user && user.authenticate(params[:sessions][:password])
     log_in(user)
-    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-    erb :"/user_pages/self"
+    # params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
+    redirect '/'
   else
     flash.now[:error] = 'Invalid email/password combination'
-    erb :"/app_pages/login"
+    redirect '/user/login'
   end
 end
 
@@ -50,7 +50,6 @@ get '/user' do
 end
 
 post '/user/:id/follow' do
-
 end
 
 get '/user/:id/following' do
