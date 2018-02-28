@@ -1,7 +1,24 @@
 require 'sinatra'
 
 post 'user/login' do
+  @user = User.find_by_email(params[:email])
+  if @user.password_digest == params[:password_digest]
+    give_token
+  else
+    redirect_to home_url
+  end
+end
 
+post 'user/create' do
+  @user = User.new(params[:user])
+  if @user.save
+    log_in @user
+    flash[:success] = "Welcome to Twitter!"
+    erb :"/user"
+  else
+    flash[:error] = "Please complete all fields"
+    render 'new'
+  end
 end
 
 get 'user/register' do
