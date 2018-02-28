@@ -1,2 +1,2 @@
-require './app'
+require './nano_twitter'
 run Sinatra::Application
