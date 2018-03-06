@@ -1,6 +1,5 @@
 require 'sinatra'
 require_relative '../models/user'
-require 'byebug'
 require 'sinatra/flash'
 
 helpers SessionsHelper
