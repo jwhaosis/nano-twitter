@@ -19,7 +19,7 @@ end
 
 # ---- For the API ----- #
 
-get '/api/v1/:apitoken/tweets/recent' do
+get '/api/v1/{apitoken}/tweets/recent' do
   tweets = Tweets.find(:all, :order => "created_at desc", :limit =>100)
   while !tweets.empty?
     tweets.reverse
@@ -27,19 +27,19 @@ get '/api/v1/:apitoken/tweets/recent' do
   @tweets = tweets.as_json
 end
 
-get '/api/v1/:apitoken/tweets/:id' do
+get '/api/v1/{apitoken}/tweets/:id' do
   tweets = Tweets.find_by(id: :id)
   if !tweets.empty?
     @tweets = tweets.as_json
   end
 end
 
-post '/api/v1/:apitoken/tweets/new' do
+post '/api/v1/{apitoken}/tweets/new' do
   tweet = Tweets.new
   #add info from apitoken here
 end
 
-delete '/api/v1/:apitoken/tweets/:id/delete' do
+delete '/api/v1/{apitoken}/tweets/:id/delete' do
   tweet = Tweets.find_by(id: :id)
   if !tweet.empty?
     tweet.destroy
