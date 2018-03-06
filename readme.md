@@ -39,6 +39,6 @@ nanoTwitter 0.3: Core functionality
 2. Test Interface - Shu Lin, James
 3. Codeship - James
 4. Standard Seeds - Shu Lin
-5. Autodeploy - James
+5. Autodeploy (Codeship to Heroku)- James
 
 
