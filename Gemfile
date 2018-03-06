@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
 gem 'activerecord'
-gem 'sinatra-activerecord'
-gem 'pg'
-gem 'rake'
 gem 'bcrypt'
 gem 'dotenv'
-gem 'sinatra-flash'
+gem 'pg'
+gem 'rake'
+
+gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
+gem 'sinatra-flash'
