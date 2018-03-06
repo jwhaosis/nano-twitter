@@ -39,7 +39,7 @@ post '/api/v1/:apitoken/tweets/new' do
   #add info from apitoken here
 end
 
-delete '/api/v1/:apitoken/tweet/:id' do
+delete '/api/v1/:apitoken/tweets/:id/delete' do
   tweet = Tweets.find_by(id: :id)
   if !tweet.empty?
     tweet.destroy
