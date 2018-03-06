@@ -1,7 +1,6 @@
 require 'sinatra'
 require_relative '../models/user'
 require 'byebug'
-# require_relative '../helpers/sessions_helper'
 require 'sinatra/flash'
 
 helpers SessionsHelper
@@ -68,4 +67,19 @@ end
 get '/user/:id' do
   @user = User.find(params[:id])
   erb :"user_pages/user", :user_id => :id
+end
+
+# ---- For the API ----- #
+
+get '/api/v1/:apitoken/users/:id' do
+  @users = Users.find(params[:id])
+end
+
+get '/api/v1/:apitoken/users/:id/tweets' do
+  @tweets = Tweets.find(:user_id => :id)
+end
+
+post '/api/v1/:apitoken/users/create' do
+  user = Users.new
+  #add info from apitoken here
 end
