@@ -21,7 +21,7 @@ post '/user/register' do
   end
 end
 
-get '/user/login' do
+get '/login' do
   if logged_in?
     redirect '/'
   else
@@ -30,7 +30,7 @@ get '/user/login' do
 end
 
 # create new user
-post '/user/login' do
+post '/login' do
   email = params[:sessions][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
   if user && user.authenticate(params[:sessions][:password])
@@ -41,6 +41,12 @@ post '/user/login' do
     flash.now[:error] = 'Invalid email/password combination'
     redirect '/user/login'
   end
+end
+
+get '/logout' do
+  session.clear
+  # response.set_cookie("user_id", value: "", expires: Time.now - 100 )
+  redirect '/'
 end
 
 get '/user' do

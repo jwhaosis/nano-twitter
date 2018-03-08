@@ -13,8 +13,12 @@ get '/tweets' do
   erb :"tweet_pages/tweet_list"
 end
 
-get '/tweets/:id' do
-  erb :"tweet_pages/tweet", :tweet_id => :id
+# get '/tweets/:id' do
+#   erb :"tweet_pages/tweet", :tweet_id => :id
+# end
+
+post '/tweets/search' do
+  erb :"tweet_pages/tweet_list"
 end
 
 # ---- For the API ----- #
