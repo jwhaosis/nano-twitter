@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'faker'
 
 get '/test/reset/all' do
   User.delete_all
