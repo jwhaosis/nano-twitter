@@ -1,7 +1,6 @@
 Shu Lin Chan, Priyanka Grover, James Wang
 13.2
 
-
 ## **Tweets**
 - GET tweet
  * *Description*: Returns a tweet with the given tweet number.

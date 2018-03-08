@@ -76,11 +76,11 @@ end
 
 # ---- For the API ----- #
 
-get '/api/v1/{apitoken}/users/:id' do
+get '/api/v1/:apitoken/users/:id' do
   @users = Users.find(params[:id])
 end
 
-get '/api/v1/{apitoken}/users/:id/tweets' do
+get '/api/v1/:apitoken/users/:id/tweets' do
   @tweets = Tweets.find(:user_id => :id)
 end
 
