@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'activerecord'
 gem 'bcrypt'
 gem 'dotenv'
-require 'faker'
+gem 'faker'
 gem 'pg'
 gem 'rake'
 
