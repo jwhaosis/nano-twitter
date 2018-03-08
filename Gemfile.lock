@@ -17,6 +17,8 @@ GEM
     bcrypt (3.1.11)
     concurrent-ruby (1.0.5)
     dotenv (2.2.1)
+    faker (1.8.7)
+      i18n (>= 0.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     minitest (5.11.3)
@@ -56,6 +58,7 @@ DEPENDENCIES
   activerecord
   bcrypt
   dotenv
+  faker
   pg
   rake
   sinatra
