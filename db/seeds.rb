@@ -10,11 +10,11 @@ Tweet.delete_all
 
 #load users
 count = 0
-CSV.foreach('./db/seeds/users.csv') do |user_row|
+CSV.foreach('./db/seeds/users.csv') do |user|
   #only import 100
   if (count < 100)
-    user_array = user_row.split(/\s*,\s*/)
-    user_first = user_array[1]
+    user_first = user[1].downcase.gsub(/\W+/, '')
+    puts user_first
     User.create(
         first_name: user_first,
         email: "#{user_first}@email.com",
@@ -25,11 +25,11 @@ CSV.foreach('./db/seeds/users.csv') do |user_row|
 end
 
 count = 0
-CSV.foreach('./db/seeds/follows.csv') do |follows_row|
+CSV.foreach('./db/seeds/follows.csv') do |follow|
   # only import 250
   if (count < 250)
-    user_id = follows_row[0]
-    follows_user_id = follows_row[1]
+    user_id = follow[0]
+    follows_user_id = follow[1]
     Follower.create(
         user_id: follows_user_id.to_i,
         followed_by_id: user_id.to_i
