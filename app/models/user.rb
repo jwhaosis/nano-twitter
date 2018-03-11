@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   has_many :tweets
-  has_many :followers
+  has_many :followers, source: :followed_by_id
+  has_many :following
   has_many :likes
   has_many :mentions
   has_many :hashtags
@@ -37,5 +38,10 @@ class User < ActiveRecord::Base
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def following_tweets
+    following_users = "SELECT user_id FROM followers WHERE followed_by_id = :user_id"
+    return Tweet.where("user_id IN #{following_users}")
   end
 end

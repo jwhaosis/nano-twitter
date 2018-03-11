@@ -1,1 +1,33 @@
-home
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <% if !logged_in?  %>
+        <%= erb :'app_pages/signup', :layout => false %>
+      <% else %>
+        <%= erb :'user_pages/self', :layout => false, :locals => { :user => current_user } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body" >
+        <div class="form-group">
+          <textarea class="form-control" rows="3" id="tweet" placeholder="What's happening?" type="search"></textarea>
+        </div>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" style="float: right;">Tweet</button>
+      </div>
+
+      <ul class="list-group list-group-flush">
+        <% if !@tweets.empty? %>
+          <% @tweets.each do |tweet| %>
+            <li class="list-group-item">
+                <p><%= tweet.tweet %></p>
+                - <a href="/tweets/<%= tweet.user_id %>"><%= tweet.user.first_name %></a>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

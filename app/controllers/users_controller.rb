@@ -6,7 +6,11 @@ helpers SessionsHelper
 
 # go to sign up page
 get '/user/register' do
-  erb :'/app_pages/signup'
+  if logged_in?
+    redirect "/"
+  else
+    erb :'/app_pages/signup'
+  end
 end
 
 # create new user
@@ -49,7 +53,7 @@ get '/logout' do
   redirect '/'
 end
 
-get '/user' do
+get '/user/:id' do
   erb :"user_pages/self"
 end
 
@@ -57,10 +61,12 @@ post '/user/:id/follow' do
 end
 
 get '/user/:id/following' do
+  @user = User.find(params[:id])
   erb :"user_pages/user_following", :user_id => :id
 end
 
 get '/user/:id/followers' do
+  @user = User.find(params[:id])
   erb :"user_pages/user_followers", :user_id => :id
 end
 

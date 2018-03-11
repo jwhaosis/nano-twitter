@@ -5,6 +5,7 @@ require 'sinatra/flash'
 require 'sinatra/cookies'
 
 get '/' do
+  @tweets = logged_in? ? current_user.following_tweets.first(50) : Tweet.first(50)
   erb :"app_pages/home"
 end
 
