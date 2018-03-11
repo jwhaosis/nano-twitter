@@ -23,7 +23,7 @@
           <% @tweets.each do |tweet| %>
             <li class="list-group-item">
                 <p><%= tweet.tweet %></p>
-                - <a href="/tweets/<%= tweet.user_id %>"><%= tweet.user.first_name %></a>
+                - <a href="/tweets/<%= tweet.user_id %>"><%= tweet.user.name %></a>
             </li>
           <% end %>
         <% end %>

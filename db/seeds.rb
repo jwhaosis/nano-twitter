@@ -13,11 +13,10 @@ count = 0
 CSV.foreach('./db/seeds/users.csv') do |user|
   #only import 100
   if (count < 100)
-    user_first = user[1].downcase.gsub(/\W+/, '')
-    puts user_first
+    username = user[1].downcase.gsub(/\W+/, '')
     User.create(
-        first_name: user_first,
-        email: "#{user_first}@email.com",
+        name: username,
+        email: "#{username}@email.com",
         password: "password"
     )
   end
