@@ -9,6 +9,6 @@ require_relative './app/models/follower'
 
 set :views, Proc.new { File.join(root, "app/views") }
 
-get '/loaderio-b2e4b797e349e5bb43997050b02a1255' do
+get '/loaderio-b2e4b797e349e5bb43997050b02a1255/' do
   "loaderio-b2e4b797e349e5bb43997050b02a1255"
 end
