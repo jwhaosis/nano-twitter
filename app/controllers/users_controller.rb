@@ -53,6 +53,7 @@ get '/logout' do
   redirect '/'
 end
 
+# all the tweets the user has posted
 get '/user/:id' do
   erb :"user_pages/self"
 end
