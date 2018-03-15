@@ -1,25 +1,13 @@
-require 'sinatra'
+require_relative "../helpers/test_interface_helper"
+
+test_helper = TestInterfaceHelper.new
 
 get '/test/reset/all' do
-  User.delete_all
-  Follower.delete_all
-  Tweet.delete_all
-  User.create(
-      first_name: "test",
-      last_name: "user",
-      email: "testuser@sample.com",
-      password: "password"
-  )
+  test_helper.reset_all
 end
 
 post '/test/reset/testuser' do
-  User.where(first_name: "test", last_name: "user", email: "testuser@sample.com").first.destroy
-  User.create(
-      first_name: "test",
-      last_name: "user",
-      email: "testuser@sample.com",
-      password: "password"
-  )
+  test_helper.reset_testuser
 end
 
 get '/test/status' do
@@ -32,66 +20,27 @@ end
 
 get '/test/reset/standard' do
   tweet_count = params[:tweets]
-  redirect "/test/reset/all"
-  count = 0
-  CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
-    # only import 1000
-    if (tweet_count==nil || count < tweet_count)
-      user_id = tweets_row[0]
-      tweet = tweets_row[1]
-      created_at = tweets_row[2]
-      Tweet.create(
-          user_id: user_id.to_i,
-          tweet: tweet,
-          created_at: Date.parse(created_at)
-      )
-    end
-    count += 1
-  end
+  test_helper.reset_all
+  test_helper.reset_standard tweet_count
 end
 
 get '/test/users/create' do
   user_count = params[:count]
   tweet_count = params[:tweets]
-  user_count ||= 1
-  tweet_count ||= 0
-  (0..user_count).each do |tweet_num|
-    name_array = Faker::Name.name.split(" ")
-    user = User.create(
-        first_name: name_array[0],
-        last_name: name_array[1],
-        email: "testuser@sample.com",
-        password: "password"
-    )
-    redirect "test/user/#{user.id}/tweets/tweet_count"
-  end
+  test_helper.create_users user_count tweet_count
 end
 
 get '/test/user/:id/tweets' do
-  user = User.where(first_name: "test", last_name: "user", email: "testuser@sample.com").first if(id=="testuser")
-  user ||= User.where(id: id)
   tweet_count = params[:count]
-  (0..tweet_count).each do |tweet_num|
-    user.tweets.create(tweet: "fake", created_at: Date.parse(created_at))
-  end
+  test_helper.create_tweets :id, tweet_count
 end
 
 get '/test/user/:id/follow' do
-  user = User.where(first_name: "test", last_name: "user", email: "testuser@sample.com").first if(id=="testuser")
-  user ||= User.where(id: id)
   follow_count = params[:count]
-  (0..follow_count).each do |tweet_num|
-    user.follows.create(followed_by_id: rand(User.count))
-  end
+  test_helper.create_follows :id, follow_count
 end
 
 get '/test/user/follow' do
-  user = User.where(first_name: "test", last_name: "user", email: "testuser@sample.com").first if(id=="testuser")
-  user ||= User.where(id: id)
   follow_count = params[:count]
-  (0..follow_count).each do |tweet_num|
-    follower = User.where(id: rand(User.count))
-    follower = User.where(id: rand(User.count)) if follower == user
-    follower.follows.create(user.id)
-  end
+  test_helper.populate_follows follow_count
 end

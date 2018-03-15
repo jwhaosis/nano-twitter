@@ -39,7 +39,7 @@ post '/login' do
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
   if user && user.authenticate(params[:sessions][:password])
     log_in(user)
-    # params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
+    params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
     redirect '/'
   else
     flash.now[:error] = 'Invalid email/password combination'
