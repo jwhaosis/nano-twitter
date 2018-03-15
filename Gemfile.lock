@@ -59,6 +59,7 @@ DEPENDENCIES
   bcrypt
   dotenv
   faker
+  minitest
   pg
   rake
   sinatra
@@ -67,4 +68,4 @@ DEPENDENCIES
   sinatra-flash
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

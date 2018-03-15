@@ -4,6 +4,7 @@ gem 'activerecord'
 gem 'bcrypt'
 gem 'dotenv'
 gem 'faker'
+gem 'minitest'
 gem 'pg'
 gem 'rake'
 
