@@ -41,4 +41,8 @@ nanoTwitter 0.3: Core functionality
 4. Standard Seeds - Shu Lin
 5. Autodeploy (Codeship to Heroku) - James
 
-
+nanoTwitter 0.4: Testing and Deployment
+1. Manual Test - 
+2. Test Interface - 
+3. Load Test - 
+4. More Tests -

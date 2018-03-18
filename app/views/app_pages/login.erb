@@ -1,12 +1,17 @@
 <form action='/login' method='POST'>
   <div class="form-group">
-    <label for="email"> email: </label>
-    <input type="text" name='sessions[email]' class="form-control" id="email" placeholder="Enter email" required="true">
+    <label for="email"> Email: </label>
+    <input type="text" name='session[email]' class="form-control" id="email" placeholder="Enter email" required="true">
   </div>
 
   <div class="form-group">
-    <label for="password"> password: </label>
-    <input type="password" name='sessions[password]' class="form-control" id="password" placeholder="Enter password" required="true">
+    <label for="password"> Password: </label>
+    <input type="password" name='session[password]' class="form-control" id="password" placeholder="Enter password" required="true">
+  </div>
+
+  <div class="form-group">
+    <label for="checkbox"> Remember me </label>
+    <input type="checkbox" name='session[remember]' class="form-control" id="remember" placeholder="Enter password">
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>

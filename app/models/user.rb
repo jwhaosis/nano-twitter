@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   has_many :tweets
   has_many :followers, source: :followed_by_id
-  has_many :following
+  has_many :following, class_name: 'Follower', foreign_key: :user_id
   has_many :likes
   has_many :mentions
   has_many :hashtags
@@ -41,6 +41,6 @@ class User < ActiveRecord::Base
 
   def following_tweets
     following_users = "SELECT user_id FROM followers WHERE followed_by_id = :user_id"
-    return Tweet.where("user_id IN #{following_users}")
+    return "SELECT tweet FROM tweets WHERE user_id = #{following_users}"
   end
 end
