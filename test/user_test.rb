@@ -1,4 +1,4 @@
-require_relative '../tests_helper'
+require_relative '../ts_helper'
 
 describe User do
   before do

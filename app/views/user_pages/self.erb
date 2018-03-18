@@ -1,7 +1,7 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="/avatar.png" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title"><%=user.first_name%></h5>
+    <h5 class="card-title"><%=user.name%></h5>
     <p class="card-text">
       <div class="row">
         <div class="col-4">
@@ -15,7 +15,7 @@
           Following:
           <br/>
           <a href="/users/<%= user.id %>/followings">
-            <strong class="stats-num"><%= user.followings.length %></strong>
+            <strong class="stats-num"><%= user.following.length %></strong>
           </a>
         </div>
         <div class="col-4">
