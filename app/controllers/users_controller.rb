@@ -1,6 +1,4 @@
-require 'sinatra'
-require_relative '../models/user'
-require 'sinatra/flash'
+enable :sessions
 
 helpers SessionsHelper
 
@@ -35,11 +33,11 @@ end
 
 # create new user
 post '/login' do
-  email = params[:sessions][:email].downcase
+  email = params[:session][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
-  if user && user.authenticate(params[:sessions][:password])
+  if user && user.authenticate(params[:session][:password])
     log_in(user)
-    params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
+    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
     redirect '/'
   else
     flash.now[:error] = 'Invalid email/password combination'
@@ -59,10 +57,12 @@ get '/user/:id' do
 end
 
 post '/user/:id/follow' do
+
 end
 
 get '/user/:id/following' do
   @user = User.find(params[:id])
+  @tweets = Tweets.find(:followed_by_id => :id)
   erb :"user_pages/user_following", :user_id => :id
 end
 
@@ -90,8 +90,3 @@ end
 get '/api/v1/:apitoken/users/:id/tweets' do
   @tweets = Tweets.find(:user_id => :id)
 end
-
-#post '/api/v1/:apitoken/users/create' do
-#  user = Users.new
-  #add info from apitoken here
-#end
