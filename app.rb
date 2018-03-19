@@ -13,3 +13,7 @@ set :views, Proc.new { File.join(root, "app/views") }
 get '/loaderio-b2e4b797e349e5bb43997050b02a1255/' do
   "loaderio-b2e4b797e349e5bb43997050b02a1255"
 end
+
+get '/loaderio-c205f3ea872086526ce419d06dc04ae9/' do
+  "loaderio-c205f3ea872086526ce419d06dc04ae9"
+end
