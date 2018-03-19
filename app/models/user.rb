@@ -39,8 +39,7 @@ class User < ActiveRecord::Base
     update_attribute(:password_digest, nil)
   end
 
-  def following_tweets
-    following_users = "SELECT user_id FROM followers WHERE followed_by_id = :user_id"
-    return "SELECT tweet FROM tweets WHERE user_id = #{following_users}"
+  def following_tweets user_id
+    Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
   end
 end
