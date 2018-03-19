@@ -1,6 +1,3 @@
-require 'sinatra'
-require_relative '../models/tweet'
-
 get '/tweets/recent' do
   erb :"tweet_pages/tweet_recent"
 end

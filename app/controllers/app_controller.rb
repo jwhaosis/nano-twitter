@@ -1,8 +1,5 @@
-require 'sinatra'
-require 'sinatra/activerecord'
 require_relative '../helpers/sessions_helper'
-require 'sinatra/flash'
-require 'sinatra/cookies'
+
 enable :sessions
 
 helpers SessionsHelper

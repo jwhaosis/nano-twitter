@@ -1,6 +1,3 @@
-require 'sinatra'
-require_relative '../models/user'
-require 'sinatra/flash'
 enable :sessions
 
 helpers SessionsHelper
@@ -93,8 +90,3 @@ end
 get '/api/v1/:apitoken/users/:id/tweets' do
   @tweets = Tweets.find(:user_id => :id)
 end
-
-#post '/api/v1/:apitoken/users/create' do
-#  user = Users.new
-  #add info from apitoken here
-#end
