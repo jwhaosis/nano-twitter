@@ -16,7 +16,7 @@ get '/tweets/:id' do
   erb :"tweet_pages/tweets", :tweet_id => :id
 end
 
-post '/tweets/:id/like'
+post '/tweets/:id/like' do
   @user = User.where(id: session[:user_id]).first
   @user.change_like_status :id
 end
