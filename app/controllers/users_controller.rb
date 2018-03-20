@@ -59,7 +59,9 @@ get '/user/:id' do
 end
 
 post '/user/:id/follow' do
-
+  @user = User.where(id: session[:user_id]).first
+  @user.change_follow_status :id
+  redirect '/'
 end
 
 get '/user/:id/following' do
