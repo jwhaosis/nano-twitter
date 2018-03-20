@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
 require 'date'
-=======
 require 'active_record'
->>>>>>> Stashed changes
 
 class User < ActiveRecord::Base
 
