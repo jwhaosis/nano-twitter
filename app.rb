@@ -1,19 +1,11 @@
 require 'sinatra'
-<<<<<<< HEAD
-require './app/controllers/app_controller'
-require './app/controllers/tweets_controller'
-require './app/controllers/users_controller'
-require './app/controllers/test_controller'
-=======
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'sinatra/cookies'
-
 require_relative './app/controllers/app_controller'
 require_relative './app/controllers/tweets_controller'
 require_relative './app/controllers/users_controller'
 require_relative './app/controllers/test_controller'
->>>>>>> 5d2226820fc9620fad4b6757bd49fc100fa0a102
 require_relative './app/models/user'
 require_relative './app/models/tweet'
 require_relative './app/models/follower'

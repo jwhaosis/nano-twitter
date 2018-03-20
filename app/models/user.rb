@@ -1,3 +1,5 @@
+require 'date'
+
 class User < ActiveRecord::Base
 
   attr_accessor :remember_token
@@ -42,4 +44,34 @@ class User < ActiveRecord::Base
   def following_tweets user_id
     Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
   end
+
+  def post_tweet body
+    new_tweet = Tweet.new(tweet: body, created_at: Time.now.strftime("%d/%m/%Y %H:%M"), user_id: self.id)
+    parse_hashtag body, new_tweet.id
+  end
+
+  def parse_hashtag body, tweet_id
+    hashtag_list = body.scan(/#[a-zA-Z]*/)
+    hashtag_list.each do |hashtag|
+      new_hashtag = Hashtag.new(hashtag: hashtag) if Hashtag.where(hashtag: hashtag).first.nil?
+      Tweettag.new(hashtag_id: new_hashtag.id, tweet_id: tweet_id)
+    end
+  end
+
+  def change_follow_status user_id
+    if Follower.where(user_id: user_id, followed_by_id: self.id).first.nil?
+      Follower.new(user_id: user_id, followed_by_id: self.id)
+    else
+      Follower.where(user_id: user_id, followed_by_id: self.id).first.destroy
+    end
+  end
+
+  def change_like_status tweet_id
+    if Like.where(user_id: self.id, tweet_id: tweet_id).first.nil?
+      Like.new(user_id: self.id, tweet_id: tweet_id)
+    else
+      Like.where(user_id: self.id, tweet_id: tweet_id).first.destroy
+    end
+  end
+
 end

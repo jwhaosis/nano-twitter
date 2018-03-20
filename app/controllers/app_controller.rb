@@ -1,10 +1,12 @@
 require_relative '../helpers/sessions_helper'
+require 'byebug'
 
 enable :sessions
 
 helpers SessionsHelper
 
 get '/' do
+  byebug
   @tweets = logged_in? ? current_user.following_tweets(session[:user_id]).first(50) : Tweet.first(50)
   erb :"app_pages/home"
 end

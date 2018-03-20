@@ -3,6 +3,8 @@ get '/tweets/recent' do
 end
 
 post '/tweets/new' do
+  @user = User.where(id: sessions[:user_id])
+  @user.post_tweet params[:tweet]
   erb :"app_pages/home"
 end
 
