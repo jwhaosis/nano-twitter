@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'sinatra/cookies'
+require 'newrelic_rpm'
 require_relative './app/controllers/app_controller'
 require_relative './app/controllers/tweets_controller'
 require_relative './app/controllers/users_controller'
@@ -12,6 +13,10 @@ require_relative './app/models/follower'
 
 
 set :views, Proc.new { File.join(root, "app/views") }
+
+before do
+  #newrelic check
+end
 
 get '/loaderio-b2e4b797e349e5bb43997050b02a1255/' do
   "loaderio-b2e4b797e349e5bb43997050b02a1255"
