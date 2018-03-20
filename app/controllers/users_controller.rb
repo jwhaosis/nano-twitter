@@ -35,9 +35,9 @@ end
 
 # create new user
 post '/login' do
-  byebug
   email = params[:session][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
+  
   if user && user.authenticate(params[:session][:password])
     byebug
     log_in(user)

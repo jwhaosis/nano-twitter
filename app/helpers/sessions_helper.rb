@@ -1,7 +1,6 @@
 module SessionsHelper
   def log_in user
     session[:user_id] = user.id
-    puts "HEY #{session[:user_id]}"
   end
 
   def remember user
