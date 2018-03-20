@@ -1,5 +1,5 @@
 nano-twitter.iml
 .idea/
-.env
+env/
 .byebug_history
 Gemfile.lock
