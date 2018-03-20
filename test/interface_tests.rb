@@ -30,7 +30,20 @@ describe "Test Interface Tests" do
 
   it "can create users" do
     @helper.reset_all
-    @helper.create_users
+    @helper.create_users 1, 1
+    assert_equals 2, User.count
+  end
+
+  it "can create tweets" do
+    @helper.reset_all
+    @helper.create_tweets 1, 1
+    assert_equals 1, Tweet.count
+  end
+
+  it "can create follows" do
+    @helper.reset_all
+    @helper.create_user 1, 1
+    @helper.create_follows 1, 1
   end
 
 end
