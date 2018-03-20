@@ -15,6 +15,7 @@ GEM
     arel (8.0.0)
     backports (3.11.1)
     bcrypt (3.1.11)
+    byebug (10.0.0)
     concurrent-ruby (1.0.5)
     dotenv (2.2.1)
     faker (1.8.7)
@@ -57,6 +58,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bcrypt
+  byebug
   dotenv
   faker
   minitest
