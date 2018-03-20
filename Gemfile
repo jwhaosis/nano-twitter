@@ -6,7 +6,7 @@ gem 'byebug'
 gem 'dotenv'
 gem 'faker'
 gem 'minitest'
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 gem 'pg'
 gem 'rake'
 
