@@ -3,7 +3,7 @@ get '/tweets/recent' do
 end
 
 post '/tweets/new' do
-  @user = User.where(id: session[:user_id])
+  @user = User.where(id: session[:user_id]).first
   @user.post_tweet params[:tweet]
   erb :"app_pages/home"
 end
@@ -14,6 +14,11 @@ end
 
 get '/tweets/:id' do
   erb :"tweet_pages/tweets", :tweet_id => :id
+end
+
+post '/tweets/:id/like'
+  @user = User.where(id: session[:user_id]).first
+  @user.change_like_status :id
 end
 
 post '/tweets/search' do
