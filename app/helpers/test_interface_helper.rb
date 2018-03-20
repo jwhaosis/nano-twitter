@@ -1,3 +1,7 @@
+require "active_record"
+require_relative "../models/user"
+require_relative "../models/follower"
+require_relative "../models/tweet"
 
 class TestInterfaceHelper
   def reset_all
