@@ -1,15 +1,3 @@
-
-# require_relative "./app/models/user"
-# require_relative "./app/models/tweet"
-# require_relative "./app/models/follower"
-
-# require_relative Dir.pwd+'/app/models/user.rb'
-# require Dir.pwd +'/user.rb'
-
-# require_relative "../../app/controllers/app_controller"
-# require_relative "../../app/controllers/tweets_controller"
-# require_relative "../../app/controllers/users_controller"
-# require_relative "../../app/controllers/test_controller"
 require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
