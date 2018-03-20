@@ -1,4 +1,4 @@
-require_relative '../models/user'
+require 'byebug'
 
 enable :sessions
 
@@ -35,11 +35,14 @@ end
 
 # create new user
 post '/login' do
+  byebug
   email = params[:session][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
   if user && user.authenticate(params[:session][:password])
+    byebug
     log_in(user)
     params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+    byebug
     redirect '/'
   else
     flash.now[:error] = 'Invalid email/password combination'

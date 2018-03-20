@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'activerecord'
 gem 'bcrypt'
+gem 'byebug'
 gem 'dotenv'
 gem 'faker'
 gem 'minitest'

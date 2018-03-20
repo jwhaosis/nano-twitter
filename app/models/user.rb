@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :followers, source: :followed_by_id
   has_many :following, class_name: 'Follower', foreign_key: :user_id
   has_many :likes
-  has_many :mentionsh
+  has_many :mentions
   has_many :hashtags
 
   def User.digest string
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def forget
-    update_attribute(:password_digest, nil)
+    update_attribute(:remember_digest, nil)
   end
 
   def following_tweets user_id

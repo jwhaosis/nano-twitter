@@ -1,31 +1,29 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/avatar.png" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%=user.name%></h5>
-    <p class="card-text">
-      <div class="row">
-        <div class="col-4">
-          Tweets:
-          <br/>
-          <a href="/users/<%= user.id %>">
-            <strong class="stats-num"><%= user.tweets.length %></strong>
-          </a>
-        </div>
-        <div class="col-4">
-          Following:
-          <br/>
-          <a href="/users/<%= user.id %>/followings">
-            <strong class="stats-num"><%= user.following.length %></strong>
-          </a>
-        </div>
-        <div class="col-4">
-          Followers:
-          <br/>
-          <a href="/users/<%= user.id %>/followers">
-            <strong class="stats-num"><%= user.followers.length %></strong>
-          </a>
-        </div>
+<img class="card-img-top" src="/avatar.png" alt="Card image cap">
+<div class="card-body">
+  <h5 class="card-title"><%=user.name%></h5>
+  <p class="card-text">
+    <div class="row">
+      <div class="col-4">
+        Tweets:
+        <br/>
+        <a href="/users/<%= user.id %>">
+          <strong class="stats-num"><%= user.tweets.length %></strong>
+        </a>
       </div>
-    </p>
-  </div>
+      <div class="col-4">
+        Following:
+        <br/>
+        <a href="/users/<%= user.id %>/followings">
+          <strong class="stats-num"><%= user.following.length %></strong>
+        </a>
+      </div>
+      <div class="col-4">
+        Followers:
+        <br/>
+        <a href="/users/<%= user.id %>/followers">
+          <strong class="stats-num"><%= user.followers.length %></strong>
+        </a>
+      </div>
+    </div>
+  </p>
 </div>

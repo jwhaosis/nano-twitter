@@ -1,5 +1,4 @@
 require_relative '../helpers/sessions_helper'
-require 'byebug'
 
 enable :sessions
 

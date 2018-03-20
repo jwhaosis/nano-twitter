@@ -1,10 +1,13 @@
+require 'byebug'
+
 get '/tweets/recent' do
   erb :"tweet_pages/tweet_recent"
 end
 
 post '/tweets/new' do
   @user = User.where(id: session[:user_id]).first
-  @user.post_tweet params[:tweet]
+  @user.post_tweet params[:tweet][:tweet]
+  @tweets = @user.following_tweets(session[:user_id]).first(50)
   erb :"app_pages/home"
 end
 
