@@ -2,3 +2,4 @@ nano-twitter.iml
 .idea/
 .env
 .byebug_history
+Gemfile.lock
