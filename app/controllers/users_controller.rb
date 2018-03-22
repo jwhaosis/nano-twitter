@@ -69,8 +69,6 @@ end
 get '/user/:id/following' do
   @user = User.find(params[:id])
   @followings = @user.following
-
-  # @followings = User.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{params[:id]})")
   byebug
   erb :"user_pages/user_following", :followings => @followings
 end
@@ -78,7 +76,6 @@ end
 get '/user/:id/followers' do
   @user = User.find(params[:id])
   @followers = @user.followers
-  # @followers = User.where("user_id IN (SELECT followed_by_id FROM followers WHERE user_id = #{params[:id]})")
   erb :"user_pages/user_followers", :followers => @followers
 end
 
