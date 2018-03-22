@@ -39,10 +39,8 @@ post '/login' do
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
   
   if user && user.authenticate(params[:session][:password])
-    byebug
     log_in(user)
     params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-    byebug
     redirect '/'
   else
     flash.now[:error] = 'Invalid email/password combination'
@@ -52,13 +50,14 @@ end
 
 get '/logout' do
   session.clear
-  # response.set_cookie("user_id", value: "", expires: Time.now - 100 )
   redirect '/'
 end
 
-# all the tweets the user has posted
+# all the tweets of user_id: id
 get '/user/:id' do
-  erb :"user_pages/self"
+  @searched_user = User.find(params[:id])
+  @tweets = Tweet.find(:id => :id)
+  erb :"user_pages/user_tweets"
 end
 
 post '/user/:id/follow' do
@@ -69,13 +68,15 @@ end
 
 get '/user/:id/following' do
   @user = User.find(params[:id])
-  @tweets = Tweets.find(:followed_by_id => :id)
-  erb :"user_pages/user_following", :user_id => :id
+  @followings = @user.following
+  byebug
+  erb :"user_pages/user_following", :followings => @followings
 end
 
 get '/user/:id/followers' do
   @user = User.find(params[:id])
-  erb :"user_pages/user_followers", :user_id => :id
+  @followers = @user.followers
+  erb :"user_pages/user_followers", :followers => @followers
 end
 
 
@@ -91,9 +92,9 @@ end
 # ---- For the API ----- #
 
 get '/api/v1/:apitoken/users/:id' do
-  @users = Users.find(params[:id])
+  @users = User.find(params[:id])
 end
 
 get '/api/v1/:apitoken/users/:id/tweets' do
-  @tweets = Tweets.find(:user_id => :id)
+  @tweets = Tweet.find(:user_id => :id)
 end
