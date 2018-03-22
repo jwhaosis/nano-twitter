@@ -4,7 +4,7 @@
       <% if !logged_in?  %>
         <%= erb :'app_pages/signup', :layout => false %>
       <% else %>
-        <%= erb :'user_pages/self', :layout => false, :locals => { :user => current_user } %>
+        <%= erb :'user_pages/profile', :layout => false, :locals => { :user => current_user } %>
       <% end %>
     </div>
   </div>
@@ -22,14 +22,7 @@
         </div>
       <% end %>
       <ul class="list-group list-group-flush">
-        <% if !@tweets.empty? %>
-          <% @tweets.each do |tweet| %>
-            <li class="list-group-item">
-              <p><%= tweet.tweet %></p>
-              - <a href="/tweets/<%= tweet.user_id %>"><%= tweet.user.name %></a>
-            </li>
-          <% end %>
-        <% end %>
+        <% erb :'tweet_pages/tweets', :layout => false, :locals => { :tweets => @tweets} %>
       </ul>
     </div>
   </div>
