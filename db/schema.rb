@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20180220200832) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "tweet_id"
     t.integer "user_id"
+    t.integer "tweet_id"
   end
 
   create_table "mentions", force: :cascade do |t|

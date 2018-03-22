@@ -22,7 +22,13 @@
         </div>
       <% end %>
       <ul class="list-group list-group-flush">
-        <% erb :'tweet_pages/tweets', :layout => false, :locals => { :tweets => @tweets} %>
+        <% @tweets.each do |tweet| %>
+          <li class="list-group-item">
+            <p><%= tweet.tweet %></p>
+            - <a href="/user/<%= tweet.user_id %>"><%= tweet.user.name %></a>
+
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -16,7 +16,8 @@ get '/tweets' do
 end
 
 get '/tweets/:id' do
-  erb :"tweet_pages/tweets", :tweet_id => :id
+  @tweet = Tweet.find(params[:id])
+  erb :"tweet_pages/tweets"
 end
 
 post '/tweets/:id/like' do

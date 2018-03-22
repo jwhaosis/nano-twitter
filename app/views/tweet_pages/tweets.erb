@@ -1,13 +1,20 @@
-<div class="card-body">
-  <% tweets.each do |tweet| %>
-    <h5 class="card-title"><a href="/tweet/<%= tweet.user_id %>"><%= tweet.user_id %></a></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= tweet.user.name %></h6>
-    <p class="card-text"><%= tweet.tweet %></p>
-    <form action='tweets/<%= tweet.user_id %>/like' method='POST'>
-      <a href="/" class="btn btn-primary">Like</a>
-    </form>
-    <form action='/tweets/retweet' method='POST'>
-      <a href="/" class="btn btn-primary">Retweet</a>
-    </form>
-  <% end %>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <%= erb :'user_pages/profile', :layout => false, :locals => { :user => @searched_user } %>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% @tweets.each do |tweet| %>
+          <li class="list-group-item">
+            <p><%= tweet.tweet %></p>
+            - <a href="/user/<%= tweet.user_id %>"><%= tweet.user.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

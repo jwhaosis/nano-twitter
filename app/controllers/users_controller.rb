@@ -56,7 +56,7 @@ end
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
-  @tweets = Tweet.find(:id => :id)
+  @tweets = @searched_user.tweets
   erb :"user_pages/user_tweets"
 end
 
@@ -69,7 +69,6 @@ end
 get '/user/:id/following' do
   @user = User.find(params[:id])
   @followings = @user.following
-  byebug
   erb :"user_pages/user_following", :followings => @followings
 end
 
@@ -77,11 +76,6 @@ get '/user/:id/followers' do
   @user = User.find(params[:id])
   @followers = @user.followers
   erb :"user_pages/user_followers", :followers => @followers
-end
-
-
-get '/user/:id/tweets' do
-  erb :"user_pages/user_tweet", :user_id => :id
 end
 
 get '/user/:id' do
