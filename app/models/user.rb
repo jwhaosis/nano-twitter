@@ -61,12 +61,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def change_follow_status user_id
-    if Follower.where(user_id: user_id, followed_by_id: self.id).first.nil?
-      Follower.new(user_id: user_id, followed_by_id: self.id)
-    else
-      Follower.where(user_id: user_id, followed_by_id: self.id).first.destroy
-    end
+  def follow user_id
+    Follower.new(user_id: user_id, followed_by_id: self.id)
+  end
+
+  def unfollow user_id
+    Follower.where(user_id: user_id, followed_by_id: self.id).first.destroy
   end
 
   def change_like_status tweet_id

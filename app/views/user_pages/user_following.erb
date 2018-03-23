@@ -9,11 +9,12 @@
     <% @followings.each do |following| %>
       <div class="card">
         <div class="card-body">
-          <a href="/users/<%= following.id %>"><h5 class="card-title"><%= following.name %></h5></a>
+          <a href="/user/<%= following.id %>"><h5 class="card-title"><%= following.name %></h5></a>
+
+          <form action="/user/<%= following.id %>/follow" method='POST'>
+            <button type="button" class="btn btn-danger">Unfollow</button>
+          </form>
         </div>
-        <form action="/user/<%= @user %>/follow" method='POST'>
-          <a href="/user/<%= @user %>/followings" class="btn btn-primary">Unfollow</a>
-        </form>
       </div>
     <% end %>
   </div>

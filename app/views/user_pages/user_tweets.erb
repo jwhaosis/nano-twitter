@@ -8,12 +8,7 @@
   <div class="col-8">
     <div class="card">
       <ul class="list-group list-group-flush">
-        <% @tweets.each do |tweet| %>
-          <li class="list-group-item">
-            <p><%= tweet.tweet %></p>
-            - <a href="/user/<%= tweet.user_id %>"><%= tweet.user.name %></a>
-          </li>
-        <% end %>
+        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { :tweets => @tweets } %>
       </ul>
     </div>
   </div>

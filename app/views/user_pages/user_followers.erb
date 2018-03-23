@@ -9,12 +9,17 @@
     <% @followers.each do |follower| %>
       <div class="card">
         <div class="card-body">
-          <a href="/users/<%= follower.id %>"><h5 class="card-title"><%= follower.name %></h5></a>
+          <a href="/user/<%= follower.id %>"><h5 class="card-title"><%= follower.name %></h5></a>
+          <% if is_following?(follower.id) %>
+            <form action="/user/<%= follower.id %>/unfollow" method="/POST">
+              <button type="button" class="btn btn-danger">Unfollow</button>
+            </form>
+          <% else %>
+            <form action="/user/<%= follower.id %>/follow" method="/POST">
+              <button type="button" class="btn btn-primary">Follow</button>
+            </form>
+          <% end %>
         </div>
-        <form action="/user/<%= @user %>/follow" method='POST'>
-          TODO: Add if following then unfollow if unfollow then follow
-          <a href="/user/<%= @user %>/followers" class="btn btn-primary"></a>
-        </form>
       </div>
     <% end %>
   </div>

@@ -21,6 +21,10 @@ module SessionsHelper
     end
   end
 
+  def is_following? user_id
+    return !Follower.where(followed_by_id: current_user, user_id: user_id).empty?
+  end
+
   def logged_in?
     !current_user.nil?
   end

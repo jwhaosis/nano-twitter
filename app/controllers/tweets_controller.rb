@@ -1,6 +1,7 @@
 require 'byebug'
 
 get '/tweets/recent' do
+  @tweets = Tweet.order(:created_at).first(50)
   erb :"tweet_pages/tweet_recent"
 end
 
@@ -29,8 +30,9 @@ post '/tweets/search' do
   erb :"tweet_pages/tweet_list"
 end
 
-post '/tweets/retweet' do
-
+post '/tweets/:id/retweet' do
+  current_tweet = Tweet.find(params[:id])
+  Tweet.new(tweet: current_tweet.tweet, user_id: current_user, retweet_id: params[:id])
 end
 
 # ---- For the API ----- #

@@ -61,9 +61,15 @@ get '/user/:id' do
 end
 
 post '/user/:id/follow' do
-  @user = User.where(id: session[:user_id]).first
-  @user.change_follow_status :id
-  redirect '/'
+  to_follow_id = User.find(params[:id])
+  @user.follow to_follow_id.id
+  redirect '/users/#{params[:id]}"'
+end
+
+post '/user/:id/unfollow' do
+  to_unfollow_id = User.find(params[:id])
+  @user.change_follow_status to_unfollow_id.id
+  redirect '/users/#{params[:id]}"'
 end
 
 get '/user/:id/following' do
@@ -76,11 +82,6 @@ get '/user/:id/followers' do
   @user = User.find(params[:id])
   @followers = @user.followers
   erb :"user_pages/user_followers", :followers => @followers
-end
-
-get '/user/:id' do
-  @user = User.find(params[:id])
-  erb :"user_pages/user", :user_id => :id
 end
 
 # ---- For the API ----- #
