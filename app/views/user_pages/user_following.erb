@@ -11,8 +11,8 @@
         <div class="card-body">
           <a href="/user/<%= following.id %>"><h5 class="card-title"><%= following.name %></h5></a>
 
-          <form action="/user/<%= following.id %>/follow" method='POST'>
-            <button type="button" class="btn btn-danger">Unfollow</button>
+          <form action="/user/<%= following.id %>/unfollow" method='POST'>
+            <button type="submit" class="btn btn-danger">Unfollow</button>
           </form>
         </div>
       </div>

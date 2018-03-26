@@ -11,12 +11,12 @@
         <div class="card-body">
           <a href="/user/<%= follower.id %>"><h5 class="card-title"><%= follower.name %></h5></a>
           <% if is_following?(follower.id) %>
-            <form action="/user/<%= follower.id %>/unfollow" method="/POST">
-              <button type="button" class="btn btn-danger">Unfollow</button>
+            <form action="/user/<%= follower.id %>/unfollow" method="POST">
+              <button type="submit" class="btn btn-danger">Unfollow</button>
             </form>
           <% else %>
-            <form action="/user/<%= follower.id %>/follow" method="/POST">
-              <button type="button" class="btn btn-primary">Follow</button>
+            <form action="/user/<%= follower.id %>/follow" method="POST">
+              <button type="submit" class="btn btn-primary">Follow</button>
             </form>
           <% end %>
         </div>

@@ -25,6 +25,14 @@ module SessionsHelper
     return !Follower.where(followed_by_id: current_user, user_id: user_id).empty?
   end
 
+  def follow user_id
+    Follower.create!(user_id: user_id, followed_by_id: current_user.id)
+  end
+
+  def unfollow user_id
+    Follower.where(user_id: user_id, followed_by_id: current_user.id).first.destroy
+  end
+
   def logged_in?
     !current_user.nil?
   end

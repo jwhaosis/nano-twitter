@@ -1,5 +1,4 @@
 require 'byebug'
-
 enable :sessions
 
 helpers SessionsHelper
@@ -16,7 +15,6 @@ end
 # create new user
 post '/user/register' do
   @user = User.new(params[:user])
-
   if @user.save
     log_in @user
     redirect '/'
@@ -62,14 +60,14 @@ end
 
 post '/user/:id/follow' do
   to_follow_id = User.find(params[:id])
-  @user.follow to_follow_id.id
-  redirect '/users/#{params[:id]}"'
+  follow to_follow_id.id
+  redirect "/user/#{params[:id]}"
 end
 
 post '/user/:id/unfollow' do
   to_unfollow_id = User.find(params[:id])
-  @user.change_follow_status to_unfollow_id.id
-  redirect '/users/#{params[:id]}"'
+  unfollow to_unfollow_id.id
+  redirect "user/#{params[:id]}"
 end
 
 get '/user/:id/following' do
