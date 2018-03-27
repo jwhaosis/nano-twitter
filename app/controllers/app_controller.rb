@@ -1,3 +1,4 @@
+require 'sinatra'
 require_relative '../helpers/sessions_helper'
 
 enable :sessions
