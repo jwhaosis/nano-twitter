@@ -22,7 +22,7 @@ module SessionsHelper
   end
 
   def is_following? user_id
-    return !Follower.where(followed_by_id: current_user, user_id: user_id).empty?
+    return !Follower.where(followed_by_id: current_user.id, user_id: user_id).empty?
   end
 
   def follow user_id
@@ -32,6 +32,11 @@ module SessionsHelper
   def unfollow user_id
     Follower.where(user_id: user_id, followed_by_id: current_user.id).first.destroy
   end
+
+  def is_liking? tweet_Id
+    return !Likes.where(user_id: current_user.id, tweet_id: tweet_id).empty?
+  end
+
 
   def logged_in?
     !current_user.nil?
