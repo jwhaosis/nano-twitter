@@ -15,7 +15,6 @@ require_relative './app/models/mention'
 require_relative './app/models/tweettag'
 require_relative './app/models/hashtag'
 
-
 set :views, Proc.new { File.join(root, "app/views") }
 
 before do

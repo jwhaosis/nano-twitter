@@ -18,13 +18,6 @@ clone this app from github: https://github.com/jwhaosis/nano-twitter
 4. To start the server, run:
 ````rackup````
 
-###To run tests
-
-
-
-
-
-
 
 ##Change History
 nanoTwitter 0.1: Foundation
@@ -47,7 +40,13 @@ nanoTwitter 0.3: Core functionality
 5. Autodeploy (Codeship to Heroku) - James
 
 nanoTwitter 0.4: Testing and Deployment
-1. Manual Test - 
-2. Test Interface - 
-3. Load Test - 
-4. More Tests -
+1. Manual Test - Shu Lin 
+2. Test Interface - James
+3. Load Test - James
+4. More Tests - Priyanka
+
+nanoTwitter 0.5 - Inital Load Testing
+1. New Relic - James
+2. Loader - James and Priyanka
+3. New Web - James and Shu Lin
+4. Improve Schema - Shu Lin
