@@ -22,8 +22,15 @@ get '/tweets/:id' do
 end
 
 post '/tweets/:id/like' do
-  @user = User.where(id: session[:user_id]).first
-  @user.change_like_status :id
+  tweet_id = Tweet.find(params[:id]).id
+  unlike tweet_id
+  redirect back
+end
+
+post '/tweets/:id/unlike' do
+  tweet_id = Tweet.find(params[:id]).id
+  like tweet_id
+  redirect back
 end
 
 post '/tweets/search' do
@@ -32,7 +39,7 @@ end
 
 post '/tweets/:id/retweet' do
   current_tweet = Tweet.find(params[:id])
-  Tweet.new(tweet: current_tweet.tweet, user_id: current_user, retweet_id: params[:id])
+  Tweet.create!(tweet: current_tweet.tweet, user_id: current_user.id, retweet_id: current_tweet.id)
 end
 
 # ---- For the API ----- #

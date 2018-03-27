@@ -10,6 +10,10 @@ require_relative './app/controllers/test_controller'
 require_relative './app/models/user'
 require_relative './app/models/tweet'
 require_relative './app/models/follower'
+require_relative './app/models/like'
+require_relative './app/models/mention'
+require_relative './app/models/tweettag'
+require_relative './app/models/hashtag'
 
 
 set :views, Proc.new { File.join(root, "app/views") }

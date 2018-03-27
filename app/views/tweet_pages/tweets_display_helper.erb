@@ -8,13 +8,21 @@
       <!--tweet.retweets.length--> <!--tweet.likes.length-->
       <p class="card-text">retweets likes</p>
 
-      <form action="/tweets/<%= tweet.user_id %>/like" method='POST'>
-        <a href="/" class="card-link">Like</a>
-      </form>
+      <% if logged_in? %>
+        <% if is_liking?(tweet.id) %>
+          <form action="/tweets/<%= tweet.user_id %>/unlike" method="POST">
+            <button type="submit" class="btn btn-danger">Unlike</button>
+          </form>
+        <% else %>
+          <form action="/tweets/<%= tweet.user_id %>/like" method="POST">
+            <button type="submit" class="btn btn-primary">Like</button>
+          </form>
+        <% end %>
 
-      <form action='/tweets/<%= tweet.user_id %>/retweet' method='POST'>
-        <a href="/" class="card-link">Retweet</a>
-      </form>
+        <form action='/tweets/<%= tweet.user_id %>/retweet' method='POST'>
+          <button type="submit" class="btn btn-primary">Retweet</button>
+        </form>
+      <% end %>
     </div>
   </li>
 <% end %>

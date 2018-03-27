@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def post_tweet body
-    new_tweet = Tweet.new(tweet: body, created_at: Time.now.strftime("%d/%m/%Y %H:%M"), user_id: self.id)
+    new_tweet = Tweet.new(tweet: body, created_at: Time.now.strftime("%d/%m/%Y %H:%M"), user_id: current_user.id)
     parse_hashtag body, new_tweet.id
   end
 
@@ -61,12 +61,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  def change_like_status tweet_id
-    if Like.where(user_id: self.id, tweet_id: tweet_id).first.nil?
-      Like.new(user_id: self.id, tweet_id: tweet_id)
-    else
-      Like.where(user_id: self.id, tweet_id: tweet_id).first.destroy
-    end
-  end
 
 end

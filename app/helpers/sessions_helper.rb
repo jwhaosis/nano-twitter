@@ -33,10 +33,18 @@ module SessionsHelper
     Follower.where(user_id: user_id, followed_by_id: current_user.id).first.destroy
   end
 
-  def is_liking? tweet_Id
-    return !Likes.where(user_id: current_user.id, tweet_id: tweet_id).empty?
+  def is_liking? tweet_id
+    return !Like.where(user_id: current_user.id, tweet_id: tweet_id).empty?
+    byebug
   end
 
+  def like tweet_id
+    Like.create!(user_id: current_user.id, tweet_id: tweet_id)
+  end
+
+  def unlike tweet_id
+    Like.where(user_id: current_user.id, tweet_id: tweet_id).first.destroy
+  end
 
   def logged_in?
     !current_user.nil?
