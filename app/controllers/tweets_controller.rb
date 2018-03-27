@@ -1,5 +1,9 @@
 require 'byebug'
 
+enable :sessions
+
+helpers SessionsHelper
+
 get '/tweets/recent' do
   @tweets = Tweet.order(:created_at).first(50)
   erb :"tweet_pages/tweet_recent"
@@ -21,13 +25,13 @@ get '/tweets/:id' do
   erb :"tweet_pages/tweets"
 end
 
-post '/tweets/:id/like' do
+post '/tweets/:id/unlike' do
   tweet_id = Tweet.find(params[:id]).id
   unlike tweet_id
   redirect back
 end
 
-post '/tweets/:id/unlike' do
+post '/tweets/:id/like' do
   tweet_id = Tweet.find(params[:id]).id
   like tweet_id
   redirect back

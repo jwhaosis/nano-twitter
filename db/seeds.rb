@@ -1,10 +1,16 @@
 require 'csv'
+require_relative '../app/models/user'
+require_relative '../app/models/follower'
+require_relative '../app/models/tweet'
+require_relative '../app/models/hashtag'
+require_relative '../app/models/like'
+require_relative '../app/models/tweettag'
+require_relative '../app/models/mention'
 
 #reset db
 User.delete_all
 Follower.delete_all
 Tweet.delete_all
-Follower.delete_all
 Hashtag.delete_all
 Like.delete_all
 Tweettag.delete_all
