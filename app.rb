@@ -28,3 +28,7 @@ end
 get '/loaderio-c205f3ea872086526ce419d06dc04ae9/' do
   "loaderio-c205f3ea872086526ce419d06dc04ae9"
 end
+
+get '/loaderio-abf0c3b8e0a97d274c430526ca889d56/' do
+  "loaderio-abf0c3b8e0a97d274c430526ca889d56"
+end
