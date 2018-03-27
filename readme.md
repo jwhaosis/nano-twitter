@@ -1,4 +1,3 @@
-
 #NanoTwitter App
 ##Authors
 Shu Lin Chan,
@@ -18,7 +17,13 @@ clone this app from github: https://github.com/jwhaosis/nano-twitter
 ````rake db:seed````
 4. To start the server, run:
 ````rackup````
-5. Note: If you need the AWS key and password, ask Shu Lin.
+
+###To run tests
+
+
+
+
+
 
 
 ##Change History

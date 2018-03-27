@@ -1,0 +1,20 @@
+<% tweets.each do |tweet| %>
+  <li class="list-group-item">
+    <div class="card-body">
+      <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.user.name %></h5></a>
+      <h6 class="card-subtitle mb-2 text-muted"><%= tweet.tweet %></h6>
+      <small class="card-text"><%= tweet.created_at.strftime("%I:%M%p - %m %b %Y") %></small>
+      <br>
+      <!--tweet.retweets.length--> <!--tweet.likes.length-->
+      <p class="card-text">retweets likes</p>
+
+      <form action="/tweets/<%= tweet.user_id %>/like" method='POST'>
+        <a href="/" class="card-link">Like</a>
+      </form>
+
+      <form action='/tweets/<%= tweet.user_id %>/retweet' method='POST'>
+        <a href="/" class="card-link">Retweet</a>
+      </form>
+    </div>
+  </li>
+<% end %>
