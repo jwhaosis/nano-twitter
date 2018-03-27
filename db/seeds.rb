@@ -7,6 +7,12 @@ require_relative '../app/models/tweet'
 User.delete_all
 Follower.delete_all
 Tweet.delete_all
+Follower.delete_all
+Hashtag.delete_all
+Like.delete_all
+Tweettag.delete_all
+Mention.delete_all
+
 
 #load users
 CSV.foreach('./db/seeds/users.csv') do |user|
