@@ -8,6 +8,7 @@ gem 'faker'
 gem 'minitest'
 #gem 'newrelic_rpm'
 gem 'pg'
+gem 'puma'
 gem 'rake'
 
 gem 'sinatra'
