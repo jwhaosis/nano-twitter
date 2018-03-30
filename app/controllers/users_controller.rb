@@ -51,11 +51,15 @@ get '/logout' do
   redirect '/'
 end
 
+get '/profile' do
+  erb :'user_pages/profile', :locals => { :user => current_user }
+end
+
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
   @tweets = @searched_user.tweets.order(created_at: :desc)
-  erb :"user_pages/user_tweets"
+  erb :'user_pages/user_tweets'
 end
 
 post '/user/:id/follow' do
