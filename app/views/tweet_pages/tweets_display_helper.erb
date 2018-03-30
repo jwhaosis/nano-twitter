@@ -2,11 +2,16 @@
   <li class="list-group-item">
     <div class="card-body">
       <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.user.name %></h5></a>
-      <h6 class="card-subtitle mb-2 text-muted"><%= tweet.tweet %></h6>
+
+      <h6 class="card-subtitle mb-2 text-muted">
+        <% if !tweet.retweet_id.nil? %>
+          RT
+        <% end%>
+        <%= tweet.tweet %>
+      </h6>
       <small class="card-text"><%= tweet.created_at.strftime("%I:%M%p - %m %b %Y") %></small>
       <br>
-      <!--tweet.retweets.length--> <!--tweet.likes.length-->
-      <p class="card-text">retweets likes</p>
+      <p class="card-text"><%= tweet.retweets.length %> retweets <%= tweet.likes.length %> likes</p>
 
       <% if logged_in? %>
         <div class="row">
