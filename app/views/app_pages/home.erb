@@ -1,12 +1,10 @@
 <div class="row">
   <div class="col-4">
-    <div class="card">
-      <% if !logged_in?  %>
-        <%= erb :'app_pages/signup', :layout => false %>
-      <% else %>
-        <%= erb :'user_pages/profile', :layout => false, :locals => { :user => current_user } %>
-      <% end %>
-    </div>
+    <% if !logged_in?  %>
+      <%= erb :'app_pages/signup', :layout => false %>
+    <% else %>
+      <%= erb :'user_pages/profile', :layout => false, :locals => { :user => current_user } %>
+    <% end %>
   </div>
 
   <div class="col-8">
