@@ -54,7 +54,7 @@ end
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
-  @tweets = @searched_user.tweets
+  @tweets = @searched_user.tweets.order(created_at: :desc)
   erb :"user_pages/user_tweets"
 end
 

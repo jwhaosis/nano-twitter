@@ -41,35 +41,35 @@ post '/tweets/search' do
   erb :"tweet_pages/tweet_list"
 end
 
-post '/tweets/:id/retweet' do
-  current_tweet = Tweet.find(params[:id])
+post '/tweets/:tweet/retweet' do
+  current_tweet = Tweet.find(params[:tweet])
   Tweet.create!(tweet: current_tweet.tweet, user_id: current_user.id, retweet_id: current_tweet.id)
+  redirect "user/#{current_user.id}"
 end
 
 # ---- For the API ----- #
 
 get '/api/v1/:apitoken/tweets/recent' do
-  tweets = Tweets.find(:all, :order => "created_at desc", :limit =>100)
-  while !tweets.empty?
-    tweets.reverse
+  tweets = Tweet.all.order(created_at: :desc).first(100)
+  if !tweets.empty?
+    @tweets = tweets.as_json
   end
-  @tweets = tweets.as_json
 end
 
 get '/api/v1/:apitoken/tweets/:id' do
-  tweets = Tweets.find_by(id: :id)
+  tweets = Tweet.find_by(id: :id)
   if !tweets.empty?
     @tweets = tweets.as_json
   end
 end
 
 post '/api/v1/:apitoken/tweets/new' do
-  tweet = Tweets.new
+  tweet = Tweet.new
   #add info from apitoken here
 end
 
 delete '/api/v1/:apitoken/tweets/:id/delete' do
-  tweet = Tweets.find_by(id: :id)
+  tweet = Tweet.find_by(id: :id)
   if !tweet.empty?
     tweet.destroy
   end

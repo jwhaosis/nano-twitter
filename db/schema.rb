@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180220200832) do
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tweet_id"
+    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
   end
 
   create_table "mentions", force: :cascade do |t|
