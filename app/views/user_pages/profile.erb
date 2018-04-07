@@ -27,15 +27,17 @@
       </div>
     </p>
     <div class="row" style="padding-left: 10%">
-      <% if user != current_user %>
-        <% if is_following?(user.id) %>
-          <form action="/user/<%= user.id %>/unfollow" method="POST">
-            <button type="submit" class="btn btn-danger">Unfollow</button>
-          </form>
-        <% else %>
-          <form action="/user/<%= user.id %>/follow" method="POST">
-            <button type="submit" class="btn btn-primary">Follow</button>
-          </form>
+      <% if logged_in? %>
+        <% if user != current_user %>
+          <% if is_following?(user.id) %>
+            <form action="/user/<%= user.id %>/unfollow" method="POST">
+              <button type="submit" class="btn btn-danger">Unfollow</button>
+            </form>
+          <% else %>
+            <form action="/user/<%= user.id %>/follow" method="POST">
+              <button type="submit" class="btn btn-primary">Follow</button>
+            </form>
+          <% end %>
         <% end %>
       <% end %>
     </div>
