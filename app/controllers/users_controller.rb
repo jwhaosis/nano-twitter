@@ -1,4 +1,6 @@
+require_relative '../helpers/sessions_helper'
 require 'byebug'
+
 enable :sessions
 
 helpers SessionsHelper
@@ -53,6 +55,30 @@ end
 
 get '/profile' do
   erb :'user_pages/profile', :locals => { :user => current_user }
+end
+
+get '/user/update_profile' do
+  erb :'user_pages/update_profile', :locals => { :user => current_user }
+end
+
+post '/user/update_profile' do
+  if !User.where(name: params[:user][:name]).empty? && current_user.name != params[:user][:name]
+    flash[:danger] = 'Username already taken.'
+    redirect '/user/update_profile'
+  elsif !User.where(email: params[:user][:email]).nil? && current_user.email != params[:user][:email]
+    flash[:danger] = 'Email already taken.'
+    redirect '/user/update_profile'
+  else
+    current_user.update(params[:user])
+  end
+
+  if current_user.save
+    flash[:success] = 'Profile updated successfully.'
+    redirect '/'
+  else
+    flash[:danger] = 'Failed to update profile'
+    redirect back
+  end
 end
 
 # all the tweets of user_id: id
