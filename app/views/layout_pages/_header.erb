@@ -7,7 +7,7 @@
     <ul class="navbar-nav">
       <% if logged_in? %>
         <a class="nav-item nav-link" href="/">Home</a>
-        <a class="nav-item nav-link" href="/profile">Profile</a>
+        <a class="nav-item nav-link" href="/user/update_profile">Profile</a>
         <a class="nav-item nav-link" href="/logout">Logout</a>
       <% else %>
         <a class="nav-item nav-link" href="/login">Login</a>
@@ -15,8 +15,16 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0" style="margin-left: auto">
+
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
+
+<% flash.keys.each do |type| %>
+  <div data-alert class="flash <%= type %> alert-box radius">
+    <%= flash[type] %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
