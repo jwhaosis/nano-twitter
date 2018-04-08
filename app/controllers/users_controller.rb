@@ -35,6 +35,7 @@ end
 
 # create new user
 post '/login' do
+  byebug
   email = params[:session][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
   
@@ -43,8 +44,8 @@ post '/login' do
     params[:session][:remember_me] == '1' ? remember(user) : forget(user)
     redirect '/'
   else
-    flash.now[:error] = 'Invalid email/password combination'
-    redirect '/user/login'
+    flash[:error] = 'Invalid email/password combination.'
+    redirect back
   end
 end
 
