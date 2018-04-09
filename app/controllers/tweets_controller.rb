@@ -10,10 +10,13 @@ get '/tweets/recent' do
 end
 
 post '/tweets/new' do
-  @user = User.where(id: session[:user_id]).first
-  @user.post_tweet params[:tweet][:tweet]
-  @tweets = @user.following_tweets(session[:user_id]).first(50)
-  erb :"app_pages/home"
+  if post_tweet params[:tweet]
+    parse_hashtag_and_mention params[:tweet], @new_tweet.id
+    redirect "user/#{current_user.id}"
+  else
+    flash[:danger] = 'Sorry, cannot tweet at this time. Please try again.'
+    redirect back
+  end
 end
 
 get '/tweets' do
@@ -64,7 +67,6 @@ get '/api/v1/:apitoken/tweets/:id' do
 end
 
 post '/api/v1/:apitoken/tweets/new' do
-  tweet = Tweet.new
   #add info from apitoken here
 end
 

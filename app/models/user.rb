@@ -1,6 +1,3 @@
-require 'date'
-require 'active_record'
-
 class User < ActiveRecord::Base
 
   attr_accessor :remember_token
@@ -47,19 +44,4 @@ class User < ActiveRecord::Base
   def following_tweets user_id
     Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
   end
-
-  def post_tweet body
-    new_tweet = Tweet.new(tweet: body, created_at: Time.now.strftime("%d/%m/%Y %H:%M"), user_id: current_user.id)
-    parse_hashtag body, new_tweet.id
-  end
-
-  def parse_hashtag body, tweet_id
-    hashtag_list = body.scan(/#[a-zA-Z]*/)
-    hashtag_list.each do |hashtag|
-      new_hashtag = Hashtag.new(hashtag: hashtag) if Hashtag.where(hashtag: hashtag).first.nil?
-      Tweettag.new(hashtag_id: new_hashtag.id, tweet_id: tweet_id)
-    end
-  end
-
-
 end

@@ -62,6 +62,29 @@ module SessionsHelper
     @current_user = nil
   end
 
+  def post_tweet body
+    @new_tweet = Tweet.new(tweet: body, user_id: current_user.id)
+    return @new_tweet.save
+  end
+
+  def parse_hashtag_and_mention body, tweet_id
+    hashtag_list = body.scan(/#[a-zA-Z]*/)
+    hashtag_list.each do |hashtag|
+      Hashtag.new(hashtag: hashtag).save if Hashtag.where(hashtag: hashtag).first.nil?
+      hashtag_id = Hashtag.where(hashtag: hashtag).first.id
+      Tweettag.new(hashtag_id: hashtag_id, tweet_id: tweet_id).save
+    end
+    mentions_list = body.scan(/@[a-zA-Z]*/)
+    mentions_list.each do |mention|
+      byebug
+      user = User.where(name: mention[1..-1]).first
+      #don't add to mentions db if user doesn't exist
+      if !user.nil?
+        Mention.new(tweet_id: tweet_id, mentioned_user_id: user.id).save
+      end
+    end
+  end
+
   def redirect_back_or default
     redirect_to(session[:forwarding_url] || default)
     session.delete :forwarding_url
