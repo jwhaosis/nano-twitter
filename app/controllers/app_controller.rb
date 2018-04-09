@@ -1,5 +1,3 @@
-require_relative '../helpers/sessions_helper'
-
 enable :sessions
 
 helpers SessionsHelper
@@ -10,5 +8,9 @@ get '/' do
 end
 
 get '/search' do
+  erb :"app_pages/search"
+end
+
+post '/search' do
   erb :"app_pages/search"
 end
