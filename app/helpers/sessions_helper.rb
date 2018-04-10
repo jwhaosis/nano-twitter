@@ -85,13 +85,28 @@ module SessionsHelper
     end
   end
 
-  def redirect_back_or default
-    redirect_to(session[:forwarding_url] || default)
-    session.delete :forwarding_url
-  end
+  #search on homepage
+  def search body
+    byebug
+    word_list = body.split
+    @tweets = Tweet.where('tweet LIKE ?', "%#{body}%")
+    #@tweets = Tweet.where('tweet REGEXP ?', word_list.join('|'))
 
-  def store_location
-    session[:forwarding_url] = request.original_url if request.get?
+    # hashtag_list = body.scan(/#[a-zA-Z]*/)
+    # mentions_list = body.scan(/@[a-zA-Z]*/)
+    # #have both hashtag and mentions
+    # if hashtag_list.any? && mentions_list.any?
+    #   where_clause = '';
+    #   hashtag_list.each do |hashtag|
+    #     .where('tweet REGEXP ?',names.join('|'))
+    #
+    #   end
+    # elsif !hashtag_list.any? && mentions_list.any?
+    #
+    # elsif hashtag_list.any? && !mentions_list.any?
+    #
+    # else
+    #   Tweet.where('tweet REGEXP ?', word_list.join('|'))
+    # end
   end
-
 end
