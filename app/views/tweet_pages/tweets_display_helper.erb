@@ -1,7 +1,7 @@
 <% tweets.each do |tweet| %>
   <li class="list-group-item">
     <div class="card-body">
-      <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.user.name %></h5></a>
+      <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.name %></h5></a>
 
       <h6 class="card-subtitle mb-2 text-muted">
         <% if !tweet.retweet_id.nil? %>
