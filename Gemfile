@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activerecord'
+gem 'activerecord-import'
 gem 'bcrypt'
 gem 'byebug'
 gem 'dotenv'
