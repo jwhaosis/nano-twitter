@@ -87,26 +87,21 @@ module SessionsHelper
 
   #search on homepage
   def search body
-    byebug
-    word_list = body.split
-    @tweets = Tweet.where('tweet LIKE ?', "%#{body}%")
-    #@tweets = Tweet.where('tweet REGEXP ?', word_list.join('|'))
+    word_list = body.split()
+    hashtag_list = body.scan(/#[a-zA-Z]*/)
+    mentions_list = body.scan(/@[a-zA-Z]*/)
 
-    # hashtag_list = body.scan(/#[a-zA-Z]*/)
-    # mentions_list = body.scan(/@[a-zA-Z]*/)
-    # #have both hashtag and mentions
-    # if hashtag_list.any? && mentions_list.any?
-    #   where_clause = '';
-    #   hashtag_list.each do |hashtag|
-    #     .where('tweet REGEXP ?',names.join('|'))
-    #
-    #   end
-    # elsif !hashtag_list.any? && mentions_list.any?
-    #
-    # elsif hashtag_list.any? && !mentions_list.any?
-    #
-    # else
-    #   Tweet.where('tweet REGEXP ?', word_list.join('|'))
-    # end
+    if mentions_list.length == 1 && !hashtag_list.any?
+      mentioned_user_id = User.where(name: mentions_list.first[1..-1])
+      @tweets = Tweet.where(user_id: mentioned_user_id)
+    elsif hashtag_list.length == 1 && !mentions_list.any?
+      hashtag_id = Hashtag.where(hashtag: "#help").first.id
+      @tweets = Tweet.joins(:tweettags).where("tweettags.hashtag_id = #{hashtag_id}")
+    else
+      @tweets = Tweet.where('lower(tweet) ~ ?', word_list.map(&:downcase).join('|'))
+    end
+    if !@tweets.nil?
+      @tweets = @tweets.order(:created_at).first(50)
+    end
   end
 end
