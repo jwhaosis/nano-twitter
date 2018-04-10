@@ -98,7 +98,6 @@ module SessionsHelper
       hashtag_id = Hashtag.where(hashtag: "#help").first.id
       @tweets = Tweet.joins(:tweettags).where("tweettags.hashtag_id = #{hashtag_id}")
     else
-      byebug
       @tweets = Tweet.where('lower(tweet) ~ ?', word_list.map(&:downcase).join('|'))
     end
     if !@tweets.nil?
