@@ -47,7 +47,7 @@ end
 
 count = 0
 #load tweets
-if (count < 3000)
+if (count < 2500)
   CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
     user_id = tweets_row[0]
     tweet = tweets_row[1]
