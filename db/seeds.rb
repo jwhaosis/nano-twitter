@@ -47,16 +47,18 @@ end
 
 count = 0
 #load tweets
-CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
-  user_id = tweets_row[0]
-  tweet = tweets_row[1]
-  created_at = tweets_row[2]
-  tweets << Tweet.new(
-      id: count+=1,
-      user_id: user_id.to_i,
-      tweet: tweet,
-      created_at: Date.parse(created_at)
-  )
+if (count < 3000)
+  CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
+    user_id = tweets_row[0]
+    tweet = tweets_row[1]
+    created_at = tweets_row[2]
+    tweets << Tweet.new(
+        id: count+=1,
+        user_id: user_id.to_i,
+        tweet: tweet,
+        created_at: Date.parse(created_at)
+    )
+  end
 end
 
 sorted_tweets = tweets.sort_by &:created_at
