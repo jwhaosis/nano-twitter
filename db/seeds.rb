@@ -61,7 +61,7 @@ if (count < 2500)
   end
 end
 
-sorted_tweets = tweets.sort_by &:created_at
+# sorted_tweets = tweets.sort_by &:created_at
 User.import users
 Follower.import followers
-Tweet.import sorted_tweets
+# Tweet.import sorted_tweets
