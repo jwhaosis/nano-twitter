@@ -59,7 +59,7 @@ CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
   )
 end
 
+sorted_tweets = tweets.sort_by &:created_at
 User.import users
 Follower.import followers
-Tweet.import tweets
-Tweet.order!(:created_at  )
+Tweet.import sorted_tweets
