@@ -1,6 +1,3 @@
-require 'date'
-require 'active_record'
-
 class User < ActiveRecord::Base
 
   attr_accessor :remember_token
@@ -13,8 +10,10 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
   validates :password, presence: true, length: { minimum: 6 }, on: :create
   has_many :tweets
-  has_many :followers, source: :followed_by_id
-  has_many :following, class_name: 'Follower', foreign_key: :user_id
+  has_many :following_someone, class_name: 'Follower', foreign_key: 'followed_by_id'
+  has_many :followed_by_someone, class_name: 'Follower', foreign_key: 'user_id'
+  has_many :following, through: :following_someone, source: :user
+  has_many :followers, through: :followed_by_someone, source: :followed_by
   has_many :likes
   has_many :mentions
   has_many :hashtags
@@ -45,34 +44,4 @@ class User < ActiveRecord::Base
   def following_tweets user_id
     Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
   end
-
-  def post_tweet body
-    new_tweet = Tweet.new(tweet: body, created_at: Time.now.strftime("%d/%m/%Y %H:%M"), user_id: self.id)
-    parse_hashtag body, new_tweet.id
-  end
-
-  def parse_hashtag body, tweet_id
-    hashtag_list = body.scan(/#[a-zA-Z]*/)
-    hashtag_list.each do |hashtag|
-      new_hashtag = Hashtag.new(hashtag: hashtag) if Hashtag.where(hashtag: hashtag).first.nil?
-      Tweettag.new(hashtag_id: new_hashtag.id, tweet_id: tweet_id)
-    end
-  end
-
-  def change_follow_status user_id
-    if Follower.where(user_id: user_id, followed_by_id: self.id).first.nil?
-      Follower.new(user_id: user_id, followed_by_id: self.id)
-    else
-      Follower.where(user_id: user_id, followed_by_id: self.id).first.destroy
-    end
-  end
-
-  def change_like_status tweet_id
-    if Like.where(user_id: self.id, tweet_id: tweet_id).first.nil?
-      Like.new(user_id: self.id, tweet_id: tweet_id)
-    else
-      Like.where(user_id: self.id, tweet_id: tweet_id).first.destroy
-    end
-  end
-
 end

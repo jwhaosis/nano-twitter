@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-4">
+    <%= erb :'user_pages/profile', :layout => false, :locals => { :user => @searched_user } %>
+  </div>
+
+  <div class="col-8">
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% @tweets.each do |tweet| %>
+          <li class="list-group-item">
+            <p><%= tweet.tweet %></p>
+            - <a href="/user/<%= tweet.user_id %>"><%= tweet.user.name %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
