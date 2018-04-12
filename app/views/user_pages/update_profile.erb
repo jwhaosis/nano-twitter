@@ -1,0 +1,24 @@
+<%= erb :'user_pages/profile', :layout => false, :locals => { :user => current_user } %>
+
+<div class="card">
+  <div class="card-body">
+    <form action='/user/update_profile' method='POST'>
+      <div class="form-group">
+        <label for="name"> Username: </label>
+        <input type="text" name='user[name]' class="form-control" id="name" value="<%=current_user.name%>" required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="email"> Email: </label>
+        <input type="text" name='user[email]' class="form-control" id="email" value="<%=current_user.email%>" required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="password"> Password: </label>
+        <input type="password" name='user[password]' class="form-control" id="password" placeholder="password">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="float: right;">Update Profile</button>
+    </form>
+  </div>
+</div>

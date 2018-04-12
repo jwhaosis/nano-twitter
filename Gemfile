@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activerecord'
+gem 'activerecord-import'
 gem 'bcrypt'
 gem 'byebug'
 gem 'dotenv'
@@ -8,6 +9,7 @@ gem 'faker'
 gem 'minitest'
 #gem 'newrelic_rpm'
 gem 'pg'
+gem 'puma'
 gem 'rake'
 
 gem 'sinatra'
