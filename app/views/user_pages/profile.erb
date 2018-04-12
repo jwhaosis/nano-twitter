@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%=user.name%></h5>
+    <p class="card-text">
+      <div class="row">
+        <div class="col-4">
+          Tweets:
+          <br/>
+          <a href="/user/<%= user.id %>">
+            <strong class="stats-num"><%= user.tweets.length %></strong>
+          </a>
+        </div>
+        <div class="col-4">
+          Following:
+          <br/>
+          <a href="/user/<%= user.id %>/following">
+            <strong class="stats-num"><%= user.following.length %></strong>
+          </a>
+        </div>
+        <div class="col-4">
+          Followers:
+          <br/>
+          <a href="/user/<%= user.id %>/followers">
+            <strong class="stats-num"><%= user.followers.length %></strong>
+          </a>
+        </div>
+      </div>
+    </p>
+    <div class="row" style="padding-left: 10%">
+      <% if logged_in? %>
+        <% if user != current_user %>
+          <% if is_following?(user.id) %>
+            <form action="/user/<%= user.id %>/unfollow" method="POST">
+              <button type="submit" class="btn btn-danger">Unfollow</button>
+            </form>
+          <% else %>
+            <form action="/user/<%= user.id %>/follow" method="POST">
+              <button type="submit" class="btn btn-primary">Follow</button>
+            </form>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

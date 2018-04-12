@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-4">
+    <%= erb :'user_pages/profile', :layout => false, :locals => { :user => @user } %>
+  </div>
+
+  <div class="col-8">
+    <% @followers.each do |follower| %>
+      <div class="card">
+        <div class="card-body">
+          <a href="/user/<%= follower.id %>"><h5 class="card-title"><%= follower.name %></h5></a>
+          <% if logged_in? %>
+            <% if is_following?(follower.id) %>
+              <form action="/user/<%= follower.id %>/unfollow" method="POST">
+                <button type="submit" class="btn btn-danger">Unfollow</button>
+              </form>
+            <% else %>
+              <form action="/user/<%= follower.id %>/follow" method="POST">
+                <button type="submit" class="btn btn-primary">Follow</button>
+              </form>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

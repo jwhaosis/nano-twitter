@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-4">
+      <%= erb :'user_pages/profile', :layout => false, :locals => { :user => @searched_user } %>
+  </div>
+
+  <div class="col-8">
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { :tweets => @tweets } %>
+      </ul>
+    </div>
+  </div>
+</div>
