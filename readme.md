@@ -46,7 +46,17 @@ nanoTwitter 0.4: Testing and Deployment
 4. More Tests - Priyanka
 
 nanoTwitter 0.5 - Inital Load Testing
-1. New Relic - James
+1. Load Testing  - James
 2. Loader - James and Priyanka
 3. New Web - James and Shu Lin
 4. Improve Schema - Shu Lin
+
+nanoTwitter 0.6 - Advanced Scaling
+1. Redis - James, Shu Lin
+2. Caching - James, Shu Lin
+3. Scale Experiment - James
+
+nanoTwitter 0.7 - Web Service API & Client
+1. API Routes -
+2. Client Lib - 
+3. Client Lib Test
