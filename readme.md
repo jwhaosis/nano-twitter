@@ -5,6 +5,8 @@ Priyanka Grover,
 James Wang
 COSI105B, Spring 2018
 
+###Heroku
+http://scuteser.herokuapp.com/
 
 ###To deploy
 clone this app from github: https://github.com/jwhaosis/nano-twitter
