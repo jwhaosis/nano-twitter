@@ -1,6 +1,3 @@
-require_relative '../helpers/sessions_helper'
-require 'byebug'
-
 enable :sessions
 
 helpers SessionsHelper
@@ -48,7 +45,7 @@ end
 post '/login' do
   email = params[:session][:email].downcase
   user = User.exists?(email: email) ? User.find_by(email: email) : nil
-  
+
   if user && user.authenticate(params[:session][:password])
     log_in(user)
     params[:session][:remember_me] == '1' ? remember(user) : forget(user)
