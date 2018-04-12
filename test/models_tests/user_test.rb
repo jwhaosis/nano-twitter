@@ -14,12 +14,8 @@ RSpec.describe User do
     @incorrectuser2 = User.new(name: "Honey", password: "testtest123")
   end
 
-  it "has a first name" do
-    @correctuser1.first_name.must_equal "John"
-  end
-
-  it "has a last name" do
-    @correctuser2.last_name.must_equal "Plath"
+  it "has a name" do
+    @correctuser1.name.must_equal "John Doe"
   end
 
   it "has an email" do
