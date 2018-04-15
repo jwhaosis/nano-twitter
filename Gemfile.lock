@@ -33,6 +33,7 @@ GEM
     rack-protection (2.0.1)
       rack
     rake (12.3.0)
+    redis (4.0.1)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -69,6 +70,7 @@ DEPENDENCIES
   pg
   puma
   rake
+  redis
   sinatra
   sinatra-activerecord
   sinatra-contrib
