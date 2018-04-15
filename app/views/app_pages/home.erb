@@ -20,7 +20,7 @@
         </div>
       <% end %>
       <ul class="list-group list-group-flush">
-        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { :tweets => @tweets } %>
+        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, retweets_hash: @retweets_hash, likes_hash: @likes_hash } %>
       </ul>
     </div>
   </div>
