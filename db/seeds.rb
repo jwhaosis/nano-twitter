@@ -48,7 +48,6 @@ end
 count = 0
 #load tweets
 CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
-  if (count < 2500)
   user_id = tweets_row[0]
   tweet = tweets_row[1]
   created_at = tweets_row[2]
@@ -58,10 +57,9 @@ CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
       tweet: tweet,
       created_at: Date.parse(created_at)
   )
-  end
 end
 
-# sorted_tweets = tweets.sort_by &:created_at
+sorted_tweets = tweets.sort_by &:created_at
 User.import users
 Follower.import followers
-Tweet.import tweets
+Tweet.import sorted_tweets

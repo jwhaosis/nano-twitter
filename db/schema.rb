@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180220200832) do
     t.datetime "created_at"
     t.integer "user_id"
     t.integer "retweet_id"
+    t.index ["retweet_id"], name: "index_tweets_on_retweet_id"
   end
 
   create_table "tweettags", force: :cascade do |t|

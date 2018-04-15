@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
@@ -41,7 +40,9 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
-  def following_tweets user_id
-    Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
-  end
+  # def following_tweets user_id
+  #   User.joins(:followers).where("followers.followed_by_id = #{user_id}").joins(:tweets).where("tweets.user_id = followers.user_id").select("tweets.*, users.name")
+  #   # Tweet.joins(user_id).select("tweets.*, users.name").order(:created_at).first(50)
+  #   # Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
+  # end
 end

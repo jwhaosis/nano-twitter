@@ -7,6 +7,10 @@
         <% if !tweet.retweet_id.nil? %>
           RT
         <% end%>
+        <% if tweet.tweet.include? "#"%>
+          <% ls = tweet.scan(/#[a-zA-Z]*/) %>
+          <%= ls.each do |hashtag| tweet.gsub! hashtag, '<a href="/tweets/search/#{hashtag}">#{hashtag}</a>' end %>
+        <% end %>
         <%= tweet.tweet %>
       </h6>
       <small class="card-text"><%= tweet.created_at.strftime("%I:%M%p - %m %b %Y") %></small>

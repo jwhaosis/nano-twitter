@@ -106,4 +106,12 @@ module SessionsHelper
       @tweets = @tweets.order(:created_at).first(50)
     end
   end
+
+  def following_tweets user
+    #User.joins(:followers, :tweets).where("followers.followed_by_id = 1")
+    User.joins(:followers, :tweets).where("followers.followed_by_id = #{user.id}").joins(:tweets)
+
+    # Tweet.joins(user_id).select("tweets.*, users.name").order(:created_at).first(50)
+    # Tweet.where("user_id IN (SELECT user_id FROM followers WHERE followed_by_id = #{user_id})")
+  end
 end

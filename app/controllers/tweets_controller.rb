@@ -40,8 +40,10 @@ post '/tweets/:id/like' do
   redirect back
 end
 
-post '/tweets/search' do
-  erb :"tweet_pages/tweet_list"
+get '/tweets/search/:key' do
+  byebug
+  search params[:key]
+  erb :"app_pages/search"
 end
 
 post '/tweets/:tweet/retweet' do
