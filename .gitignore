@@ -4,3 +4,4 @@ nano-twitter.iml
 .env/
 log/
 .byebug_history
+.env
