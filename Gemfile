@@ -11,7 +11,7 @@ gem 'redis'
 gem 'pg'
 gem 'puma'
 gem 'rake'
-
+gem 'newrelic_rpm'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
