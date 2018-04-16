@@ -3,3 +3,4 @@ nano-twitter.iml
 .env
 log/
 .byebug_history
+config/newrelic.yml
