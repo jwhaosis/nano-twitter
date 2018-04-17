@@ -3,7 +3,6 @@ helpers SessionsHelper
 
 get '/' do
   if !logged_in?
-    byebug
     if !$redis.get('html').nil?
       return $redis.get('html')
     else
