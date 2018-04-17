@@ -1,6 +1,7 @@
 enable :sessions
 
 helpers SessionsHelper
+helpers UsersHelper
 
 # go to sign up page
 get '/user/register' do

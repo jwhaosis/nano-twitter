@@ -1,8 +1,7 @@
-require 'byebug'
-
 enable :sessions
 
 helpers SessionsHelper
+helpers TweetsHelper
 
 get '/tweets/recent' do
   @tweets = Tweet.order(:created_at).first(50)

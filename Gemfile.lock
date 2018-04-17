@@ -27,12 +27,14 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.2)
+    newrelic_rpm (5.0.0.342)
     pg (1.0.0)
     puma (3.11.3)
     rack (2.0.4)
     rack-protection (2.0.1)
       rack
     rake (12.3.0)
+    redis (4.0.1)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -66,9 +68,11 @@ DEPENDENCIES
   dotenv
   faker
   minitest
+  newrelic_rpm
   pg
   puma
   rake
+  redis
   sinatra
   sinatra-activerecord
   sinatra-contrib

@@ -1,5 +1,6 @@
 nano-twitter.iml
 .idea/
-.env/
+.env
 log/
 .byebug_history
+config/newrelic.yml
