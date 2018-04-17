@@ -14,7 +14,7 @@
       </h6>
       <small class="card-text"><%= tweet.created_at.strftime("%I:%M%p - %m %b %Y") %></small>
       <br>
-      <p class="card-text"><%= tweet.retweets.length %> retweets <%= tweet.likes.length %> likes</p>
+      <p class="card-text"><%= retweets_hash[tweet.id] %> retweets <%= likes_hash[tweet.id] %> likes</p>
 
       <% if logged_in? %>
         <div class="row">
