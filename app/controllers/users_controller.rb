@@ -93,7 +93,9 @@ end
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
-  @tweets = @searched_user.tweets.order(created_at: :desc)
+  @tweets = Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50)
+  @likes_hash = Like.group(:tweet_id).count
+  @retweets_hash = Tweet.group(:retweet_id).count
   erb :'user_pages/user_tweets'
 end
 

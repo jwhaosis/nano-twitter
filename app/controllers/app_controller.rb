@@ -15,7 +15,8 @@ get '/' do
     end
     home_html
   else
-    @tweets = Tweet.where(user_id: Follower.where(followed_by_id: session[:user_id]).to_a.map{|value| value.user_id})
+    @tweets = Tweet.joins(:user).select("tweets.*, users.name").first(50)
+    @logged_in_tweets = Tweet.where(user_id: Follower.where(followed_by_id: session[:user_id]).to_a.map{|value| value.user_id})
     @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
     @likes_hash = Like.group(:tweet_id).count
     @retweets_hash = Tweet.group(:retweet_id).count
