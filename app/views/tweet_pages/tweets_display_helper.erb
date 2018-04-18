@@ -19,7 +19,7 @@
       <% if logged_in? %>
         <div class="row">
           <div class="col-0">
-            <% if is_liking?(tweet.id) %>
+            <% if user_likes.includes? tweet.id %>
               <form action="/tweets/<%= tweet.id %>/unlike" method='POST'>
                 <button type="submit" class="btn-sm btn-danger">Unlike</button>
               </form>
