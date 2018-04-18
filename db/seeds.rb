@@ -20,40 +20,40 @@ Mention.delete_all
 users = []
 followers = []
 tweets = []
-count = 0
+user_count = 0
+follower_count = 0
+tweet_count = 0
 
 #load users
 CSV.foreach('./db/seeds/users.csv') do |user|
   username = user[1].downcase.gsub(/\W+/, '')
   users << User.new(
-      id: count+=1,
+      id: user_count+=1,
       name: username,
       email: "#{username}@email.com",
       password: "password"
   )
 end
 
-count = 0
 #load followers
 CSV.foreach('./db/seeds/follows.csv') do |follow|
   user_id = follow[0]
   follows_user_id = follow[1]
   followers << Follower.new(
-      id: count+=1,
+      id: follower_count+=1,
       user_id: follows_user_id.to_i,
       followed_by_id: user_id.to_i
   )
 end
 
-count = 0
 #load tweets
 CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
-  if (count < 2500)
+  if (tweet_count < 2500)
   user_id = tweets_row[0]
   tweet = tweets_row[1]
   created_at = tweets_row[2]
   tweets << Tweet.new(
-      id: count+=1,
+      id: tweet_count+=1,
       user_id: user_id.to_i,
       tweet: tweet,
       created_at: Date.parse(created_at)
@@ -61,7 +61,12 @@ CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
   end
 end
 
-# sorted_tweets = tweets.sort_by &:created_at
+sorted_tweets = tweets.sort_by &:created_at
+
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq restart with #{user_count+1}")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE followers_id_seq restart with #{follower_count+1}")
+ActiveRecord::Base.connection.execute("ALTER SEQUENCE tweets_id_seq restart with #{tweet_count+1}")
+
 User.import users
 Follower.import followers
-Tweet.import tweets
+Tweet.import sorted_tweets
