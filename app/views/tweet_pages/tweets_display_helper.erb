@@ -1,11 +1,7 @@
 <% tweets.each do |tweet| %>
   <li class="list-group-item">
     <div class="card-body">
-      <% if !logged_in? %>
-        <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.name %></h5></a>
-      <% else %>
-        <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.user_id %></h5></a>
-      <% end %>
+      <a href="/user/<%= tweet.user_id %>"><h5 class="card-title"><%= tweet.name %></h5></a>
       <h6 class="card-subtitle mb-2 text-muted">
         <% if !tweet.retweet_id.nil? %>
           RT
@@ -14,12 +10,12 @@
       </h6>
       <small class="card-text"><%= tweet.created_at.strftime("%I:%M%p - %m %b %Y") %></small>
       <br>
-      <p class="card-text"><%= retweets_hash[tweet.id] %> retweets <%= likes_hash[tweet.id] %> likes</p>
+      <p class="card-text"><%= retweets_hash[tweet.id].to_i %> retweets <%= likes_hash[tweet.id].to_i %> likes</p>
 
       <% if logged_in? %>
         <div class="row">
           <div class="col-0">
-            <% if user_likes.includes? tweet.id %>
+            <% if user_likes.include? tweet.id %>
               <form action="/tweets/<%= tweet.id %>/unlike" method='POST'>
                 <button type="submit" class="btn-sm btn-danger">Unlike</button>
               </form>

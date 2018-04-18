@@ -3,6 +3,7 @@ helpers SessionsHelper
 
 get '/' do
   if !logged_in?
+    $redis.del('home_html')
     home_html = $redis.get('home_html')
     if home_html.nil?
       @tweets = Tweet.joins(:user).select("tweets.*, users.name").first(50)
