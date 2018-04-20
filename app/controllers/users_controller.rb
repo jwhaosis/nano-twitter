@@ -93,9 +93,8 @@ end
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
-  @tweets = Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50)
-  @likes_hash = Like.group(:tweet_id).count
-  @retweets_hash = Tweet.group(:retweet_id).count
+  @tweets = JSON.parse Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50).to_json
+  @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
   erb :'user_pages/user_tweets'
 end
 
