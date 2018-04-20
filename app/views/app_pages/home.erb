@@ -20,7 +20,7 @@
         </div>
       <% end %>
       <ul class="list-group list-group-flush">
-        <% @tweet_info = tweetinfo_cache $redis %>
+        <% @tweet_info = tweetinfo_cache %>
         <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
       </ul>
     </div>
