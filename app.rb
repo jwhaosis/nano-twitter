@@ -26,7 +26,3 @@ Dotenv.load
 uri = URI.parse(ENV["REDIS_URI"])
 $redis = Redis.new(:host => uri, :port => 10619, :password => ENV["REDIS_PASS"])
 set :views, Proc.new { File.join(root, "app/views") }
-
-before do
-  #newrelic check
-end
