@@ -23,6 +23,5 @@ require_relative './app/models/tweettag'
 require_relative './app/models/hashtag'
 
 Dotenv.load
-uri = URI.parse(ENV["REDIS_URI"])
-$redis = Redis.new(:host => uri, :port => 10619, :password => ENV["REDIS_PASS"])
+$redis = Redis.new(:host => ENV["REDIS_URI"], :port => 10619, :password => ENV["REDIS_PASS"])
 set :views, Proc.new { File.join(root, "app/views") }
