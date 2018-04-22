@@ -17,3 +17,9 @@ post '/search' do
   search params[:search]
   erb :"app_pages/search"
 end
+
+get '/test/write' do
+  EventMachine.run {
+    http = EventMachine::HttpRequest.new('http://scuteser-db1.herokuapp.com').post :body => {:json => [User.first.to_json]}
+  }
+end

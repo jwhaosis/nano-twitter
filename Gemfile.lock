@@ -14,14 +14,27 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     backports (3.11.1)
     bcrypt (3.1.11)
     byebug (10.0.0)
     concurrent-ruby (1.0.5)
+    cookiejar (0.3.3)
     dotenv (2.2.1)
+    em-http-request (1.1.5)
+      addressable (>= 2.3.4)
+      cookiejar (!= 0.3.1)
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.2)
+      eventmachine (>= 1.0.0.beta.4)
+    eventmachine (1.2.5)
     faker (1.8.7)
       i18n (>= 0.7)
+    http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     minitest (5.11.3)
@@ -29,6 +42,7 @@ GEM
     mustermann (1.0.2)
     newrelic_rpm (5.0.0.342)
     pg (1.0.0)
+    public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
     rack-protection (2.0.1)
@@ -66,6 +80,7 @@ DEPENDENCIES
   bcrypt
   byebug
   dotenv
+  em-http-request
   faker
   minitest
   newrelic_rpm
