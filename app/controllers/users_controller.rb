@@ -1,5 +1,4 @@
 enable :sessions
-
 helpers SessionsHelper
 helpers UsersHelper
 
@@ -17,20 +16,17 @@ post '/user/register' do
   if !User.where(name: params[:user][:name]).empty?
     flash[:danger] = 'Username already taken.'
     redirect '/user/update_profile'
-  elsif !User.where(email: params[:user][:email]).nil?
+  elsif !User.where(email: params[:user][:email]).empty?
     flash[:danger] = 'Email already exists.'
     redirect '/user/update_profile'
   else
     @user = User.new(params[:user])
-  end
-
-  @user = User.new(params[:user])
-  if @user.save
-    log_in @user
-    redirect '/'
-  else
-
-    redirect '/user/register'
+    if @user.save
+      log_in @user
+      redirect '/'
+    else
+      redirect '/user/register'
+    end
   end
 end
 
