@@ -19,10 +19,22 @@
           </form>
         </div>
       <% end %>
-      <ul class="list-group list-group-flush">
-        <% @tweet_info = tweetinfo_cache %>
-        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
-      </ul>
+      <li class="list-group-item">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/feed">Timeline</a>
+          </li>
+        </ul>
+      </li>
+      <% if !@tweets.empty? %>
+        <ul class="list-group list-group-flush">
+          <% @tweet_info = tweetinfo_cache %>
+          <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
