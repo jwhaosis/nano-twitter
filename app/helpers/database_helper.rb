@@ -1,7 +1,7 @@
 require 'sinatra'
 
 module DatabaseHelper
-  def create_async model_name, name
+  def create_async model_name, model
     EM.run {
       request = EM::HttpRequest.new("http://scuteser-db1.herokuapp.com/create/#{model_name}").post :body => model.to_json
       request.callback{
@@ -15,7 +15,7 @@ module DatabaseHelper
     }
   end
 
-  def delete_async model_name, name
+  def delete_async model_name, model
     EM.run {
       request = EM::HttpRequest.new("http://scuteser-db1.herokuapp.com/delete/#{model_name}").post :body => model.to_json
       request.callback{

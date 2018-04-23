@@ -21,5 +21,5 @@ post '/search' do
 end
 
 get '/test/write' do
-  create_async "user", User.first.to_json
+  create_async "user", User.first
 end
