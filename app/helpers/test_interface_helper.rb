@@ -26,6 +26,7 @@ module TestInterfaceHelper
 
   def create_testuser
     User.create(
+      id: 1001,
       name: "testuser",
       email: "testuser@sample.com",
       password: "password"
@@ -40,7 +41,7 @@ module TestInterfaceHelper
 
   def seed_users user_count
     users = []
-    count = 1
+    count = 0
     CSV.foreach('./db/seeds/users.csv') do |user|
       if user_count == 0 || count<user_count
         username = user[1].downcase.gsub(/\W+/, '')
@@ -48,7 +49,7 @@ module TestInterfaceHelper
       end
     end
     User.import users
-    ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq restart with #{count+1}")
+    ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq restart with #{count+2}")
   end
 
   def seed_follows follow_count
