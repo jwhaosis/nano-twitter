@@ -1,9 +1,9 @@
 require 'sinatra'
 
 module DatabaseHelper
-  def create_user user
+  def create_async model_name, name
     EM.run {
-      request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/user/create').post :body => user.to_json
+      request = EM::HttpRequest.new("http://scuteser-db1.herokuapp.com/create/#{model_name}").post :body => model.to_json
       request.callback{
         puts "success"
         EM.stop
@@ -15,9 +15,9 @@ module DatabaseHelper
     }
   end
 
-  def create_tweet tweet
+  def delete_async model_name, name
     EM.run {
-      request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/user/create').post :body => tweet.to_json
+      request = EM::HttpRequest.new("http://scuteser-db1.herokuapp.com/delete/#{model_name}").post :body => model.to_json
       request.callback{
         puts "success"
         EM.stop
@@ -29,31 +29,4 @@ module DatabaseHelper
     }
   end
 
-  def create_follow
-
-  end
-
-  def create_like
-
-  end
-
-  def create_hashtag
-
-  end
-
-  def create_tweettag
-
-  end
-
-  def create_mention
-
-  end
-
-  def delete_like
-
-  end
-
-  def delete_follow
-
-  end
 end

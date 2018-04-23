@@ -1,6 +1,7 @@
 enable :sessions
 helpers SessionsHelper
 helpers CachingHelper
+helpers DatabaseHelper
 include EM::Deferrable
 
 get '/' do
@@ -20,16 +21,5 @@ post '/search' do
 end
 
 get '/test/write' do
-  EM.run {
-    request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/async').post :body => User.first.to_json
-    request.callback{
-      puts "success"
-      EM.stop
-    }
-    request.errback{
-      puts "failed"
-      EM.stop
-    }
-  }
-  "done"
+  create_async "user", User.first.to_json
 end
