@@ -1,6 +1,7 @@
 enable :sessions
 helpers SessionsHelper
 helpers CachingHelper
+include EM::Deferrable
 
 get '/' do
   if !logged_in?
@@ -24,4 +25,19 @@ end
 post '/search' do
   search params[:search]
   erb :"app_pages/search"
+end
+
+get '/test/write' do
+  EM.run {
+    request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/async').post :body => User.first.to_json
+    request.callback{
+      puts "success"
+      EM.stop
+    }
+    request.errback{
+      puts "failed"
+      EM.stop
+    }
+  }
+  "done"
 end
