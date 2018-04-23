@@ -49,6 +49,7 @@ GEM
       rack
     rake (12.3.0)
     redis (4.0.1)
+    require_all (2.0.0)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -88,6 +89,7 @@ DEPENDENCIES
   puma
   rake
   redis
+  require_all
   sinatra
   sinatra-activerecord
   sinatra-contrib
