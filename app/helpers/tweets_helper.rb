@@ -16,7 +16,6 @@ module TweetsHelper
     end
     mentions_list = body.scan(/@[a-zA-Z]*/)
     mentions_list.each do |mention|
-      byebug
       user = User.where(name: mention[1..-1]).first
       #don't add to mentions db if user doesn't exist
       if !user.nil?
