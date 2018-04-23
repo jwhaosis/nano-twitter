@@ -9,10 +9,15 @@ get '/' do
     homepage_cache
   else
     @tweets = generic_tweet_cache
-    @logged_in_tweets = (Tweet.joins(:user).select("tweets.*, users.name")).where(user_id: Follower.where(followed_by_id: session[:user_id]).to_a.map{|value| value.user_id})
     @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
     erb :"app_pages/home"
   end
+end
+
+get '/timeline' do
+  @tweets = timeline_tweet_cache
+  @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
+  erb :"app_pages/home"
 end
 
 post '/search' do

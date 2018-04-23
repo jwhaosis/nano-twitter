@@ -18,11 +18,23 @@
             <button class="btn btn-primary my-2 my-sm-0" type="submit" style="float: right;">Tweet</button>
           </form>
         </div>
+        <li class="list-group-item">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/timeline">Timeline</a>
+            </li>
+          </ul>
+        </li>
       <% end %>
-      <ul class="list-group list-group-flush">
-        <% @tweet_info = tweetinfo_cache %>
-        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
-      </ul>
+      <% if !@tweets.empty? %>
+        <ul class="list-group list-group-flush">
+          <% @tweet_info = tweetinfo_cache %>
+          <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { tweets: @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>

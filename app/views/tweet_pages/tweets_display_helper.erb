@@ -5,7 +5,7 @@
       <h6 class="card-subtitle mb-2 text-muted">
         <% if !tweet['retweet_id'].nil? %>
           RT
-        <% end%>
+        <% end %>
         <%= tweet['tweet'] %>
       </h6>
       <small class="card-text"><%= DateTime.parse(tweet['created_at']).strftime("%I:%M%p - %m %b %Y") %></small>
