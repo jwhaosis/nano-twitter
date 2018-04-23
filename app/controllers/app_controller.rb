@@ -1,6 +1,7 @@
 enable :sessions
 helpers SessionsHelper
 helpers CachingHelper
+include EM::Deferrable
 
 get '/' do
   if !logged_in?
@@ -19,7 +20,16 @@ post '/search' do
 end
 
 get '/test/write' do
-  EventMachine.run {
-    http = EventMachine::HttpRequest.new('http://scuteser-db1.herokuapp.com').post :body => {:json => [User.first.to_json]}
+  EM.run {
+    request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/async').post :body => User.first.to_json
+    request.callback{
+      puts "success"
+      EM.stop
+    }
+    request.errback{
+      puts "failed"
+      EM.stop
+    }
   }
+  "done"
 end
