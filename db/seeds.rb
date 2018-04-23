@@ -61,8 +61,6 @@ CSV.foreach('./db/seeds/tweets.csv') do |tweets_row|
   end
 end
 
-sorted_tweets = tweets.sort_by &:created_at
-
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE users_id_seq restart with #{user_count+1}")
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE followers_id_seq restart with #{follower_count+1}")
 ActiveRecord::Base.connection.execute("ALTER SEQUENCE tweets_id_seq restart with #{tweet_count+1}")

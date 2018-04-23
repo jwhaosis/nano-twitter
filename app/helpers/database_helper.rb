@@ -15,8 +15,18 @@ module DatabaseHelper
     }
   end
 
-  def create_tweet
-    
+  def create_tweet tweet
+    EM.run {
+      request = EM::HttpRequest.new('http://scuteser-db1.herokuapp.com/user/create').post :body => tweet.to_json
+      request.callback{
+        puts "success"
+        EM.stop
+      }
+      request.errback{
+        puts "failed"
+        EM.stop
+      }
+    }
   end
 
   def create_follow

@@ -1,13 +1,11 @@
-require_relative "../helpers/test_interface_helper"
-
-test_helper = TestInterfaceHelper.new
+helpers TestInterfaceHelper
 
 get '/test/reset/all' do
-  test_helper.reset_all
+  reset_all
 end
 
-post '/test/reset/testuser' do
-  test_helper.reset_testuser
+get '/test/reset/testuser' do
+  reset_testuser
 end
 
 get '/test/status' do
@@ -19,28 +17,30 @@ get '/test/version' do
 end
 
 get '/test/reset/standard' do
-  tweet_count = params[:tweets]
-  test_helper.reset_all
-  test_helper.reset_standard tweet_count
+  user_count = params[:users].to_i
+  follow_count = params[:followers].to_i
+  tweet_count = params[:tweets].to_i
+  reset_all
+  reset_standard user_count, follow_count, tweet_count
 end
 
 get '/test/users/create' do
-  user_count = params[:count]
-  tweet_count = params[:tweets]
-  test_helper.create_users user_count tweet_count
+  user_count = params[:count].to_i
+  tweet_count = params[:tweets].to_i
+  create_users user_count, tweet_count
 end
 
 get '/test/user/:id/tweets' do
-  tweet_count = params[:count]
-  test_helper.create_tweets :id, tweet_count
+  tweet_count = params[:count].to_i
+  create_tweets params[:id], tweet_count
 end
 
 get '/test/user/:id/follow' do
-  follow_count = params[:count]
-  test_helper.create_follows :id, follow_count
+  follow_count = params[:count].to_i
+  create_follows params[:id], follow_count
 end
 
 get '/test/user/follow' do
-  follow_count = params[:count]
-  test_helper.populate_follows follow_count
+  follow_count = params[:count].to_i
+  populate_follows follow_count
 end
