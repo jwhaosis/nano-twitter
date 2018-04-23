@@ -1,6 +1,7 @@
 enable :sessions
 helpers SessionsHelper
 helpers UsersHelper
+helpers CachingHelper
 
 # go to sign up page
 get '/user/register' do
@@ -89,8 +90,11 @@ end
 # all the tweets of user_id: id
 get '/user/:id' do
   @searched_user = User.find(params[:id])
-  @tweets = JSON.parse Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50).to_json
-  @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
+  @tweets = generic_tweet_cache
+  #@tweets = JSON.parse Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50).to_json
+  if logged_in
+    @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
+  end
   erb :'user_pages/user_tweets'
 end
 
