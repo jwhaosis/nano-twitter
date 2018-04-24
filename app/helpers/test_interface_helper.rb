@@ -124,5 +124,10 @@ module TestInterfaceHelper
     true
   end
 
+  def reset_cache
+    $redis.keys.each do |key|
+      $redis.del(key)
+    end
+  end
 
 end
