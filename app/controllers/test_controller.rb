@@ -44,3 +44,7 @@ get '/test/user/follow' do
   follow_count = params[:count].to_i
   populate_follows follow_count
 end
+
+get '/test/reset/cache' do
+  reset_cache
+end
