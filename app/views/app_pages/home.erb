@@ -3,7 +3,7 @@
     <% if !logged_in?  %>
       <%= erb :'app_pages/signup', :layout => false %>
     <% else %>
-      <%= erb :'user_pages/profile', :layout => false, :locals => { :user => current_user } %>
+      <%= erb :'user_pages/profile', :layout => false, :locals => {user_info: @user_info} %>
     <% end %>
   </div>
 
