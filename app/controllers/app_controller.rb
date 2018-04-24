@@ -39,7 +39,8 @@ end
 
 post '/user/testuser/tweet' do
   EM.run {
-    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet").post
+    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/1001").post
     EM.stop
   }
+  redirect "user/testuser"
 end

@@ -1,10 +1,16 @@
 require 'sinatra/base'
+require 'em-http'
+require 'eventmachine'
+
+include EM::Deferrable
 
 module TweetsHelper
-
   def post_tweet body
-    @new_tweet = Tweet.new(tweet: body, user_id: current_user.id)
-    return @new_tweet.save
+    EM.run {
+      request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/#{session[:id]}").post :body => body
+      EM.stop
+    }
+    return true
   end
 
   def parse_hashtag_and_mention body, tweet_id

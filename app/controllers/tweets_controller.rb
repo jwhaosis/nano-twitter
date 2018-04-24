@@ -4,7 +4,7 @@ helpers SessionsHelper
 helpers TweetsHelper
 
 get '/tweets/recent' do
-  @tweets = Tweet.order(:created_at).first(50)
+  @tweets = Tweet.order(:created_at).last(50)
   erb :"tweet_pages/tweet_recent"
 end
 
