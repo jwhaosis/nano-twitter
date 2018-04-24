@@ -29,7 +29,7 @@ post '/search' do
 end
 
 get '/user/testuser' do
-  @searched_user = User.find(name: testuser)
+  @searched_user = User.find(name: testuser).first
   @tweets = user_tweet_cache params[@searched_user.id]
   if logged_in?
     @user_likes = user_likes_cache session[:user_id]
