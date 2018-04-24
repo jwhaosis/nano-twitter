@@ -9,6 +9,7 @@ require 'em-http'
 require 'faker'
 require 'require_all'
 require_relative 'loaderio.rb'
+require_all 'app/helpers'
 require './app/controllers/app_controller'
 require_all 'app'
 
