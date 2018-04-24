@@ -40,7 +40,7 @@ get '/user/testuser' do
   erb :'user_pages/user_tweets'
 end
 
-post '/user/testuser/tweet' do
+get '/user/testuser/tweet' do
   EM.run {
     request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/1001").post
     EM.stop
