@@ -39,7 +39,7 @@ end
 
 post '/user/testuser/tweet' do
   EM.run {
-    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet").post :body => like.to_json
+    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet").post
     request.callback{
       puts "success"
       EM.stop
