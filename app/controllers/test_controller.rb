@@ -30,9 +30,18 @@ get '/test/users/create' do
   create_users user_count, tweet_count
 end
 
+get '/test/users/pull' do
+  pull_users
+  pull_tweets
+end
+
 get '/test/user/:id/tweets' do
   tweet_count = params[:count].to_i
   create_tweets params[:id], tweet_count
+end
+
+post '/test/tweets/pull' do
+  pull_tweets
 end
 
 get '/test/user/:id/follow' do
@@ -43,6 +52,10 @@ end
 get '/test/user/follow' do
   follow_count = params[:count].to_i
   populate_follows follow_count
+end
+
+get '/test/follows/pull' do
+  pull_follows
 end
 
 get '/test/reset/cache' do
