@@ -25,4 +25,14 @@ RSpec.describe TweetController do
     assert last_response.ok?
     last_response.body.must_include('Some content')
   end
+
+  it 'should get the recent tweets' do
+    get '/tweets/recent'
+    assert last_response.ok?
+  end
+
+  it 'should get the tweets from a user id' do
+    get '/tweets/:id'
+    assert last_response.ok?
+  end
 end
