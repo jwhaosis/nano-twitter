@@ -1,40 +1,40 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">bonnie</h5>
+    <h5 class="card-title"><%= user_info['username'] %></h5>
     <p class="card-text">
       <div class="row">
         <div class="col-4">
           Tweets:
           <br/>
-          <a href="/user/<%= user.id %>">
-            <strong class="stats-num">1</strong>
+          <a href="/user/<%= user_info['id'] %>">
+            <strong class="stats-num"><%= user_info['tweet_count'] %></strong>
           </a>
         </div>
         <div class="col-4">
           Following:
           <br/>
-          <a href="/user/<%= user.id %>/following">
-            <strong class="stats-num">1</strong>
+          <a href="/user/<%= user_info['id'] %>/following">
+            <strong class="stats-num"><%= user_info['following_count'] %></strong>
           </a>
         </div>
         <div class="col-4">
           Followers:
           <br/>
-          <a href="/user/<%= user.id %>/followers">
-            <strong class="stats-num">1</strong>
+          <a href="/user/<%= user_info['id'] %>/followers">
+            <strong class="stats-num"><%= user_info['followers_count'] %></strong>
           </a>
         </div>
       </div>
     </p>
     <div class="row" style="padding-left: 10%">
       <% if logged_in? %>
-        <% if user != current_user %>
-          <% if is_following?(user.id) %>
-            <form action="/user/<%= user.id %>/unfollow" method="POST">
+        <% if user_info['id'] != current_user.id %>
+          <% if is_following?(user_info['id']) %>
+            <form action="/user/<%= user_info['id'] %>/unfollow" method="POST">
               <button type="submit" class="btn btn-danger">Unfollow</button>
             </form>
           <% else %>
-            <form action="/user/<%= user.id %>/follow" method="POST">
+            <form action="/user/<%= user_info['id'] %>/follow" method="POST">
               <button type="submit" class="btn btn-primary">Follow</button>
             </form>
           <% end %>

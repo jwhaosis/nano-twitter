@@ -67,4 +67,5 @@ ActiveRecord::Base.connection.execute("ALTER SEQUENCE tweets_id_seq restart with
 
 User.import users
 Follower.import followers
-Tweet.import sorted_tweets
+Tweet.import tweets
+# Tweet.import sorted_tweets
