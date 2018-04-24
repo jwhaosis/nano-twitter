@@ -10,7 +10,7 @@ end
 
 post '/tweets/new' do
   if post_tweet params[:tweet]
-    parse_hashtag_and_mention params[:tweet], @new_tweet.id
+    #parse_hashtag_and_mention params[:tweet], @new_tweet.id
     redirect "user/#{current_user.id}"
   else
     flash[:danger] = 'Sorry, cannot tweet at this time. Please try again.'
