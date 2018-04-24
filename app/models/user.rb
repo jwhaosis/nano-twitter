@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
   has_secure_password validations: false
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
   has_many :tweets
   has_many :following_someone, class_name: 'Follower', foreign_key: 'followed_by_id'
   has_many :followed_by_someone, class_name: 'Follower', foreign_key: 'user_id'
