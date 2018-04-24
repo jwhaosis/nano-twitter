@@ -73,4 +73,15 @@ module CachingHelper
     JSON.parse user_likes
   end
 
+  def user_info_cache id, refresh = false
+    key = "user#{id}_infos"
+    user_info = $redis.get(key)
+    user = User.find_by(id: id)
+    if user_info.nil? || refresh
+      user_info = {username: user.name, tweet_count: user.tweets.length, following_count: user.following.length,
+                   followers_count: user.followers.length, id: user.id}.to_json
+      $redis.set(key, user_info)
+    end
+    JSON.parse user_info
+  end
 end
