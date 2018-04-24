@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require 'eventmachine'
+require 'em-http'
 
 module UsersHelper
 
@@ -19,11 +21,32 @@ module UsersHelper
   end
 
   def like tweet_id
-    Like.create!(user_id: current_user.id, tweet_id: tweet_id)
+    like = Like.new(user_id: current_user.id, tweet_id: tweet_id)
+    EM.run {
+      request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/like").post :body => like.to_json
+      request.callback{
+        puts "success"
+        EM.stop
+      }
+      request.errback{
+        puts "failed"
+        EM.stop
+      }
+    }
   end
 
   def unlike tweet_id
-    Like.where(user_id: current_user.id, tweet_id: tweet_id).first.destroy
+    like = Like.new(user_id: current_user.id, tweet_id: tweet_id)
+    EM.run {
+      request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/delete/like").post :body => like.to_json
+      request.callback{
+        puts "success"
+        EM.stop
+      }
+      request.errback{
+        puts "failed"
+        EM.stop
+      }
+    }
   end
-
 end

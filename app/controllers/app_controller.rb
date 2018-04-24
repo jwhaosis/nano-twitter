@@ -25,6 +25,25 @@ post '/search' do
   erb :"app_pages/search"
 end
 
-get '/test/write' do
-  create_async "user", User.first
+get '/user/testuser' do
+  @searched_user = User.find(name: testuser)
+  @tweets = user_tweet_cache params[@searched_user.id]
+  if logged_in?
+    @user_likes = user_likes_cache session[:user_id]
+  end
+  erb :'user_pages/user_tweets'
+end
+
+post '/user/testuser/tweet' do
+  EM.run {
+    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet").post :body => like.to_json
+    request.callback{
+      puts "success"
+      EM.stop
+    }
+    request.errback{
+      puts "failed"
+      EM.stop
+    }
+  }
 end
