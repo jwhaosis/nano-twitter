@@ -22,6 +22,9 @@ end
 
 post '/search' do
   search params[:search]
+  if logged_in?
+    @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
+  end
   erb :"app_pages/search"
 end
 

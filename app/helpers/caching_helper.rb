@@ -37,7 +37,7 @@ module CachingHelper
   def generic_tweet_cache refresh = false
     generic_tweets = $redis.get('generic_tweets')
     if generic_tweets.nil? || refresh
-      generic_tweets = Tweet.joins(:user).select("tweets.*, users.name").last(50)
+      generic_tweets = Tweet.joins(:user).select("tweets.*, users.name").order('created_at DESC').first(50)
       $redis.set('generic_tweets', generic_tweets.to_json)
     else
       generic_tweets = JSON.parse generic_tweets
@@ -49,7 +49,7 @@ module CachingHelper
     key = 'timeline_tweets_' + current_user.id.to_s
     timeline_tweets = $redis.get(key)
     if timeline_tweets.nil? || refresh
-      timeline_tweets = (Tweet.joins(:user).select("tweets.*, users.name")).where(user_id: Follower.where(followed_by_id: session[:user_id]).to_a.map{|value| value.user_id})
+      timeline_tweets = (Tweet.joins(:user).select("tweets.*, users.name")).where(user_id: Follower.where(followed_by_id: session[:user_id]).to_a.map{|value| value.user_id}).order('created_at DESC')
       $redis.set(key, timeline_tweets.to_json)
     else
       timeline_tweets = JSON.parse timeline_tweets

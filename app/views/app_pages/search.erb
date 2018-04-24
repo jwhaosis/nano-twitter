@@ -10,8 +10,9 @@
   <div class="col-8">
     <div class="card">
       <ul class="list-group list-group-flush">
+        <% @tweet_info = tweetinfo_cache %>
         <% if !@tweets.nil?  %>
-        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { :tweets => @tweets } %>
+        <%= erb :'tweet_pages/tweets_display_helper', :layout => false, :locals => { :tweets => @tweets, tweet_info: @tweet_info, user_likes: @user_likes } %>
         <% else %>
         Could not find any tweets matching your search.
         <% end %>
