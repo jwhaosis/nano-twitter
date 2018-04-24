@@ -88,12 +88,11 @@ post '/user/update_profile' do
 end
 
 # all the tweets of user_id: id
-get '/user/:id' do
+get '/user/:id'  do
   @searched_user = User.find(params[:id])
-  @tweets = generic_tweet_cache
-  #@tweets = JSON.parse Tweet.joins(:user).where(user_id: params[:id]).select("tweets.*, users.name").first(50).to_json
+  @tweets = user_tweet_cache params[:id]
   if logged_in?
-    @user_likes = Like.where(user_id: session[:user_id]).select(:tweet_id).to_a.map{|value| value.tweet_id}
+    @user_likes = user_likes_cache session[:user_id]
   end
   erb :'user_pages/user_tweets'
 end
