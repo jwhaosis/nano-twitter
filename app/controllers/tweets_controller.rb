@@ -48,16 +48,8 @@ post '/tweets/:tweet/retweet' do
   retweet = Tweet.new(tweet: current_tweet.tweet, user_id: current_user.id, retweet_id: current_tweet.id)
   EM.run {
     request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/retweet").post :body => retweet.to_json
-    request.callback{
-      puts "success"
-      EM.stop
-    }
-    request.errback{
-      puts "failed"
-      EM.stop
-    }
+    M.stop
   }
-
   redirect "user/#{current_user.id}"
 end
 

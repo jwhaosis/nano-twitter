@@ -5,14 +5,14 @@ helpers DatabaseHelper
 include EM::Deferrable
 
 get '/' do
-  home = homepage_cache
   if logged_in?
     @tweets = generic_tweet_cache
     @user_likes = user_likes_cache session[:user_id]
     @user_info = user_info_cache session[:user_id]
-    home = erb :"app_pages/home"
+    erb :"app_pages/home"
+  else
+    homepage_cache
   end
-  home
 end
 
 get '/timeline' do
