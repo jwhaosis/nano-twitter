@@ -37,9 +37,6 @@ end
 
 get '/api/v1/:apitoken/users/:id/tweets' do
   user_id = params[:id].to_i
-  cache = []
-  if token != 0
-    cache = user_tweet_cache user_id, true
-  end
+  cache = user_tweet_cache user_id, true
   cache.to_json
 end
