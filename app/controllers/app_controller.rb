@@ -42,7 +42,12 @@ end
 get '/user/testuser/tweet' do
   EM.run {
     request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/1001").post
-    EM.stop
+    request.callback{
+      EM.stop
+    }
+    request.errback{
+      EM.stop
+    }
   }
   redirect "user/testuser"
 end
