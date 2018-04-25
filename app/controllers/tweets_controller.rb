@@ -9,7 +9,7 @@ get '/tweets/recent' do
 end
 
 post '/tweets/new' do
-  if post_tweet params[:tweet]
+  if post_tweet current_user.id, params[:tweet]
     #parse_hashtag_and_mention params[:tweet], @new_tweet.id
     redirect "user/#{current_user.id}"
   else

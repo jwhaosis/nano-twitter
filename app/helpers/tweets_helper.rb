@@ -5,9 +5,9 @@ require 'eventmachine'
 include EM::Deferrable
 
 module TweetsHelper
-  def post_tweet body
+  def post_tweet id, body
     EM.run {
-      request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/#{session[:id]}").post :body => body
+      request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/#{id}").post :body => body
       request.callback{
         EM.stop
       }
