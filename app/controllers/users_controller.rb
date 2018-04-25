@@ -125,13 +125,3 @@ get '/user/:id/followers' do
   @followers = @user.followers
   erb :"user_pages/user_followers", :followers => @followers
 end
-
-# ---- For the API ----- #
-
-get '/api/v1/:apitoken/users/:id' do
-  @users = User.find(params[:id])
-end
-
-get '/api/v1/:apitoken/users/:id/tweets' do
-  @tweets = Tweet.find(:user_id => :id)
-end

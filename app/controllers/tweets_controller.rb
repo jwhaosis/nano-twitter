@@ -52,30 +52,3 @@ post '/tweets/:tweet/retweet' do
   }
   redirect "user/#{current_user.id}"
 end
-
-# ---- For the API ----- #
-
-get '/api/v1/:apitoken/tweets/recent' do
-  tweets = Tweet.all.order(created_at: :desc).first(100)
-  if !tweets.empty?
-    @tweets = tweets.as_json
-  end
-end
-
-get '/api/v1/:apitoken/tweets/:id' do
-  tweets = Tweet.find_by(id: :id)
-  if !tweets.empty?
-    @tweets = tweets.as_json
-  end
-end
-
-post '/api/v1/:apitoken/tweets/new' do
-  #add info from apitoken here
-end
-
-delete '/api/v1/:apitoken/tweets/:id/delete' do
-  tweet = Tweet.find_by(id: :id)
-  if !tweet.empty?
-    tweet.destroy
-  end
-end
