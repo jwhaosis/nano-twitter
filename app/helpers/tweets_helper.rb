@@ -8,7 +8,12 @@ module TweetsHelper
   def post_tweet body
     EM.run {
       request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/#{session[:id]}").post :body => body
-      EM.stop
+      request.callback{
+        EM.stop
+      }
+      request.errback{
+        EM.stop
+      }
     }
     return true
   end
