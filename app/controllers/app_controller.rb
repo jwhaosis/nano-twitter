@@ -41,7 +41,7 @@ end
 
 get '/user/testuser/tweet' do
   EM.run {
-    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/1001").post
+    request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/tweet/1001").post :connect_timeout => 60, :inactivity_timeout => 0
     request.callback{
       EM.stop
     }
