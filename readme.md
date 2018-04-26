@@ -59,6 +59,6 @@ nanoTwitter 0.6 - Advanced Scaling
 3. Scale Experiment - James
 
 nanoTwitter 0.7 - Web Service API & Client
-1. API Routes -
-2. Client Lib - 
-3. Client Lib Test
+1. API Routes - James
+2. Client Lib - James
+3. Client Lib Test - James
