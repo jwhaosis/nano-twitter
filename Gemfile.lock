@@ -40,7 +40,10 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.2)
+<<<<<<< Updated upstream
     newrelic_rpm (5.0.0.342)
+=======
+>>>>>>> Stashed changes
     pg (1.0.0)
     public_suffix (3.0.2)
     puma (3.11.3)
@@ -84,7 +87,6 @@ DEPENDENCIES
   em-http-request
   faker
   minitest
-  newrelic_rpm
   pg
   puma
   rake

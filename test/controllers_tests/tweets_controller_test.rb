@@ -16,17 +16,18 @@ RSpec.describe TweetController do
   # get '/tweets/:id' do
   it 'should get the first tweet' do
     get "/tweets/#{@correcttweet1.id}"
-    assert last_response.ok?
-    last_response.body.must_include('Some content')
+    assert response.ok?
+    response.body.must_include('Something')
   end
 
   it 'should get the second tweet' do
     get "/tweets/#{@correcttweet2.id}"
-    assert last_response.ok?
-    last_response.body.must_include('Some content')
+    assert response.ok?
+    response.body.must_include('Something')
   end
 
   it 'should get the recent tweets' do
+<<<<<<< Updated upstream
     get '/tweets/recent'
     assert last_response.ok?
   end
@@ -35,4 +36,12 @@ RSpec.describe TweetController do
     get '/tweets/:id'
     assert last_response.ok?
   end
+=======
+    get "/tweets/recent"
+    assert response.ok?
+    response.body.must_include('tweet_recent')
+  end
+
+  
+>>>>>>> Stashed changes
 end

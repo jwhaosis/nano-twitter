@@ -23,10 +23,26 @@
       @correctuser.password.must_equal "sylvia456"
     end
 
+<<<<<<< Updated upstream
     it "should create the correct user" do
       @correctuser.save.must_equal(true)
+=======
+#post '/user/register' do
+  describe "POST on /user/register" do
+    it "must register a new user" do
+      post('/user/register/attempt',
+        {
+          :name => correctuser.name,
+          :email => correctuser.email,
+          :password => correctuser.password})
+      response.status.must_equal 302
+      userisfound = User.where(name: correctuser.username).take
+      userisfound.name.must_equal correctuser.name
+      userisfound.email.must_equal correctuser.email
+>>>>>>> Stashed changes
     end
 
+<<<<<<< Updated upstream
   #post '/user/register' do
     describe "POST on /user/register" do
       it "must register a new user" do
@@ -50,6 +66,25 @@
             :name => correctuser.username,
             :password => correctuser.password})
         last_response.status.must_equal 302
+=======
+  describe "POST on /login" do
+    it "must log in with correct credentials" do
+      correctuser.save
+      post('/login',
+        {
+          :name => correctuser.username,
+          :password => correctuser.password})
+      response.status.must_equal 302
+    end
+
+    it "cannot log in with incorrect credentials" do
+      correctuser.save
+      post('/login',
+        {
+          :name => correctuser.name,
+          :password => "123"})
+      response.status.must_equal 400
+>>>>>>> Stashed changes
       end
 
       it "cannot log in with incorrect credentials" do
