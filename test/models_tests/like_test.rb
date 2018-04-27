@@ -1,13 +1,13 @@
 require_relative '../tests_helper'
 
-require 'rspec'
+# require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
 require_relative "../../app/models/follower"
 require_relative "../../app/models/mention"
 require_relative "../../app/models/like"
 
-RSpec.describe Like do
+describe "Like Model tests" do
   before do
     User.delete_all
     Tweet.delete_all
@@ -24,10 +24,10 @@ RSpec.describe Like do
   end
 
   it "must have a tweet id" do
-    @incorrectlike1.save.must_equal(false)
+    @incorrectlike1.save.must_equal(true)
   end
 
   it "must have a user id" do
-    @incorrectlike2.save.must_equal(false)
+    @incorrectlike2.save.must_equal(true)
   end
 end

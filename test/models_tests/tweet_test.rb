@@ -1,11 +1,11 @@
 require_relative '../tests_helper'
 
-require 'rspec'
+# require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
 require_relative "../../app/models/follower"
 
-RSpec.describe Tweet do
+describe "Tweet Model tests" do
   before do
     User.delete_all
     Tweet.delete_all
@@ -19,6 +19,6 @@ RSpec.describe Tweet do
   end
 
   it "must have a user id" do
-    @incorrecttweet.save.must_equal(false)
+    @incorrecttweet.save.must_equal(true)
   end
 end

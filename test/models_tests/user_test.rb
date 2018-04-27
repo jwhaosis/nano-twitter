@@ -1,17 +1,17 @@
-require 'rspec'
+# require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
 require_relative "../../app/models/follower"
 # require_relative './tests_helper'
-require 'csv'
+# require 'csv'
 
-RSpec.describe User do
+describe "User Model tests" do
   before do
     User.delete_all
-    @correctuser1 = User.new(name: "John Doe", email: "johndoe@test.com", password: "john123")
-    @correctuser2 = User.new(name: "Sylvia Plath", email: "Sylvia@gmail.com", password: "sylvia456")
-    @incorrectuser1 = User.new(email: "dummy@dummy.com", password: "12345")
-    @incorrectuser2 = User.new(name: "Honey", password: "testtest123")
+    @correctuser1 = User.new(name: "John Doe", email: "johndoe@test.com", password_digest: "john123")
+    @correctuser2 = User.new(name: "Sylvia Plath", email: "Sylvia@gmail.com", password_digest: "sylvia456")
+    @incorrectuser1 = User.new(email: "dummy@dummy.com", password_digest: "12345")
+    @incorrectuser2 = User.new(name: "Honey", password_digest: "testtest123")
   end
 
   it "has a name" do

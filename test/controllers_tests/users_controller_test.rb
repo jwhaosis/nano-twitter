@@ -1,11 +1,8 @@
   require_relative '../tests_helper'
-  require 'rspec'
-  # require_relative "../../app/controllers/app_controller"
-  # require_relative "../../app/controllers/followers_controller"
-  # require_relative "../../app/controllers/tweets_controller"
-  require_relative "../../app/controllers/users_controller"
+  # require 'rspec'
+  require_relative "../../app"
 
-  RSpec.describe UserController do
+  describe "Users Controller Test" do
     before do
       User.delete_all
       @correctuser = User.new(name: "Sylvia Plath", email: "sylvia@test.com", password: "sylvia456")
@@ -23,26 +20,11 @@
       @correctuser.password.must_equal "sylvia456"
     end
 
-<<<<<<< Updated upstream
     it "should create the correct user" do
       @correctuser.save.must_equal(true)
-=======
-#post '/user/register' do
-  describe "POST on /user/register" do
-    it "must register a new user" do
-      post('/user/register/attempt',
-        {
-          :name => correctuser.name,
-          :email => correctuser.email,
-          :password => correctuser.password})
-      response.status.must_equal 302
-      userisfound = User.where(name: correctuser.username).take
-      userisfound.name.must_equal correctuser.name
-      userisfound.email.must_equal correctuser.email
->>>>>>> Stashed changes
     end
+  end
 
-<<<<<<< Updated upstream
   #post '/user/register' do
     describe "POST on /user/register" do
       it "must register a new user" do
@@ -58,15 +40,6 @@
       end
     end
 
-    describe "POST on /login" do
-      it "must log in with correct credentials" do
-        correctuser.save
-        post('/login',
-          {
-            :name => correctuser.username,
-            :password => correctuser.password})
-        last_response.status.must_equal 302
-=======
   describe "POST on /login" do
     it "must log in with correct credentials" do
       correctuser.save
@@ -84,7 +57,6 @@
           :name => correctuser.name,
           :password => "123"})
       response.status.must_equal 400
->>>>>>> Stashed changes
       end
 
       it "cannot log in with incorrect credentials" do
@@ -120,7 +92,7 @@
           assert last_response.ok?
         end
 
-        it 'should get the list of people you are following'
+        it 'should get the list of people you are following' do
           get '/user/:id/following'
           assert last_response.ok?
         end
