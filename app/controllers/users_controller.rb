@@ -60,11 +60,13 @@ get '/logout' do
 end
 
 get '/profile' do
-  erb :'user_pages/profile', :locals => { :user => current_user }
+  @user_info = user_info_cache session[:user_id]
+  erb :'user_pages/profile', :locals => { user_info: @user_info }
 end
 
 get '/user/update_profile' do
-  erb :'user_pages/update_profile', :locals => { :user => current_user }
+  @user_info = user_info_cache session[:user_id]
+  erb :'user_pages/update_profile', :locals => { user_info: @user_info }
 end
 
 post '/user/update_profile' do
@@ -89,9 +91,10 @@ end
 
 # all the tweets of user_id: id
 get '/user/:id'  do
-  @searched_user = User.find(params[:id])
+  @searched_user_info = user_info_cache params[:id]
   @tweets = user_tweet_cache params[:id]
   if logged_in?
+
     @user_likes = user_likes_cache session[:user_id]
   end
   erb :'user_pages/user_tweets'
@@ -111,22 +114,14 @@ end
 
 get '/user/:id/following' do
   @user = User.find(params[:id])
+  @user_info = user_info_cache @user.id
   @followings = @user.following
   erb :"user_pages/user_following", :followings => @followings
 end
 
 get '/user/:id/followers' do
   @user = User.find(params[:id])
+  @user_info = user_info_cache @user.id
   @followers = @user.followers
   erb :"user_pages/user_followers", :followers => @followers
-end
-
-# ---- For the API ----- #
-
-get '/api/v1/:apitoken/users/:id' do
-  @users = User.find(params[:id])
-end
-
-get '/api/v1/:apitoken/users/:id/tweets' do
-  @tweets = Tweet.find(:user_id => :id)
 end

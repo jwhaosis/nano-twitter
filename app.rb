@@ -10,8 +10,9 @@ require 'faker'
 require 'require_all'
 require_relative 'loaderio.rb'
 require_all 'app/helpers'
+require './app/controllers/app_controller'
 require_all 'app'
 
 Dotenv.load
-$redis = Redis.new(:host => ENV["REDIS_URI"], :port => 10619, :password => ENV["REDIS_PASS"])
+$redis = Redis.new(:host => ENV["REDIS_URI"], :port => 17627, :password => ENV["REDIS_PASS"])
 set :views, Proc.new { File.join(root, "app/views") }

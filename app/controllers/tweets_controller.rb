@@ -4,13 +4,13 @@ helpers SessionsHelper
 helpers TweetsHelper
 
 get '/tweets/recent' do
-  @tweets = Tweet.order(:created_at).first(50)
+  @tweets = Tweet.order(:created_at).last(50)
   erb :"tweet_pages/tweet_recent"
 end
 
 post '/tweets/new' do
-  if post_tweet params[:tweet]
-    parse_hashtag_and_mention params[:tweet], @new_tweet.id
+  if post_tweet current_user.id, params[:tweet]
+    #parse_hashtag_and_mention params[:tweet], @new_tweet.id
     redirect "user/#{current_user.id}"
   else
     flash[:danger] = 'Sorry, cannot tweet at this time. Please try again.'
@@ -48,42 +48,7 @@ post '/tweets/:tweet/retweet' do
   retweet = Tweet.new(tweet: current_tweet.tweet, user_id: current_user.id, retweet_id: current_tweet.id)
   EM.run {
     request = EM::HttpRequest.new("#{ENV['DB_HELPER']}/create/retweet").post :body => retweet.to_json
-    request.callback{
-      puts "success"
-      EM.stop
-    }
-    request.errback{
-      puts "failed"
-      EM.stop
-    }
+    EM.stop
   }
-
   redirect "user/#{current_user.id}"
-end
-
-# ---- For the API ----- #
-
-get '/api/v1/:apitoken/tweets/recent' do
-  tweets = Tweet.all.order(created_at: :desc).first(100)
-  if !tweets.empty?
-    @tweets = tweets.as_json
-  end
-end
-
-get '/api/v1/:apitoken/tweets/:id' do
-  tweets = Tweet.find_by(id: :id)
-  if !tweets.empty?
-    @tweets = tweets.as_json
-  end
-end
-
-post '/api/v1/:apitoken/tweets/new' do
-  #add info from apitoken here
-end
-
-delete '/api/v1/:apitoken/tweets/:id/delete' do
-  tweet = Tweet.find_by(id: :id)
-  if !tweet.empty?
-    tweet.destroy
-  end
 end
