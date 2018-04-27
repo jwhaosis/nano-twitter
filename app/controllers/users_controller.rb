@@ -115,13 +115,13 @@ end
 get '/user/:id/following' do
   user = User.find(params[:id])
   @user_info = user_info_cache user.id
-  @followings = @user.following
+  @followings = user.following
   erb :"user_pages/user_following", :followings => @followings
 end
 
 get '/user/:id/followers' do
   user = User.find(params[:id])
   @user_info = user_info_cache user.id
-  @followers = @user.followers
+  @followers = user.followers
   erb :"user_pages/user_followers", :followers => @followers
 end
