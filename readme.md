@@ -42,7 +42,7 @@ nanoTwitter 0.3: Core functionality
 5. Autodeploy (Codeship to Heroku) - James
 
 nanoTwitter 0.4: Testing and Deployment
-1. Manual Test - Shu Lin 
+1. Manual Test - Shu Lin
 2. Test Interface - James
 3. Load Test - James
 4. More Tests - Priyanka
@@ -62,3 +62,5 @@ nanoTwitter 0.7 - Web Service API & Client
 1. API Routes - James
 2. Client Lib - James
 3. Client Lib Test - James
+4. Testing - Priyanka
+5. Portfolio - Priyanka
