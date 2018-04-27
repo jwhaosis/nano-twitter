@@ -8,6 +8,9 @@ COSI105B, Spring 2018
 ###Heroku
 http://scuteser.herokuapp.com/
 
+###Portfolio page
+https://groverpriyanka.github.io/scuteser
+
 ###To deploy
 clone this app from github: https://github.com/jwhaosis/nano-twitter
 
