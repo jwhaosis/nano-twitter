@@ -1,3 +1,6 @@
+[ ![Heroku](https://heroku-badge.herokuapp.com/?app=scuteser)](https://scuteser.herokuapp.com)
+[ ![Code Climate](https://codeclimate.com/github/jwhaosis/nano-twitter/badges/gpa.svg)](https://codeclimate.com/github/jwhaosis/nano-twitter)
+
 #NanoTwitter App
 ##Authors
 Shu Lin Chan,
