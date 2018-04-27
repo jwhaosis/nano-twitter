@@ -1,6 +1,4 @@
 [ ![Heroku](https://heroku-badge.herokuapp.com/?app=scuteser)](https://scuteser.herokuapp.com)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
-[ ![Code Climate](https://codeclimate.com/github/jwhaosis/nano-twitter/badges/gpa.svg)](https://codeclimate.com/github/jwhaosis/nano-twitter)
 
 #NanoTwitter App
 ##Authors
