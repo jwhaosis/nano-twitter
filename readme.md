@@ -84,5 +84,5 @@ nanoTwitter 1.0: Completion
 2. Codeclimate - Priyanka
 3. UI clean up = Shu Lin
 4. Preparation for spinoff - James
-5. Final Review - James, Shu Lin
+5. Final Review - James, Shu Lin, Priyanka
 
