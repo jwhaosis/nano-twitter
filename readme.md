@@ -78,3 +78,11 @@ nanoTwitter 0.7 - Web Service API & Client
 3. Client Lib Test - James
 4. Testing - Priyanka
 5. Portfolio - Priyanka
+
+nanoTwitter 1.0: Completion
+1. Microservice = James, Shu Lin
+2. Codeclimate - Priyanka
+3. UI clean up = Shu Lin
+4. Preparation for spinoff - James
+5. Final Review - James, Shu Lin
+
