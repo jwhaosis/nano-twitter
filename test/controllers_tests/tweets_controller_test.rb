@@ -1,6 +1,7 @@
 require_relative '../tests_helper'
-# require 'rspec'
-require_relative "../../app"
+require_relative "../../app/controllers/app_controller"
+require_relative "../../app/controllers/tweets_controller"
+require_relative "../../app/controllers/users_controller"
 
 
 describe "Tweets Controller Test" do

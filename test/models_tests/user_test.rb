@@ -1,8 +1,8 @@
+require_relative '../tests_helper'
 # require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
 require_relative "../../app/models/follower"
-# require_relative './tests_helper'
 # require 'csv'
 
 describe "User Model tests" do
@@ -14,6 +14,14 @@ describe "User Model tests" do
     @incorrectuser2 = User.new(name: "Honey", password_digest: "testtest123")
   end
 
+  it "must check for name" do
+    @incorrectuser1.save.must_equal(false)
+  end
+
+  it "must check for an email" do
+    @incorrectuser2.save.must_equal(false)
+  end
+
   it "has a name" do
     @correctuser1.name.must_equal "John Doe"
   end
@@ -23,7 +31,7 @@ describe "User Model tests" do
   end
 
   it "has a password" do
-    @correctuser1.password.must_equal "john123"
+    @correctuser1.password_digest.must_equal "john123"
   end
 
   it "should create the correct user" do
@@ -32,13 +40,5 @@ describe "User Model tests" do
 
   it "should create another correct user" do
     @correctuser2.save.must_equal(true)
-  end
-
-  it "must check for name" do
-    @incorrectuser1.save.must_equal(false)
-  end
-
-  it "must check for an email" do
-    @incorrectuser2.save.must_equal(false)
   end
 end
