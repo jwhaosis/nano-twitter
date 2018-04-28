@@ -1,6 +1,6 @@
 require_relative '../tests_helper'
 
-require 'rspec'
+# require 'rspec'
 require_relative "../../app/models/user"
 require_relative "../../app/models/tweet"
 require_relative "../../app/models/follower"
@@ -9,8 +9,7 @@ require_relative "../../app/models/like"
 require_relative "../../app/models/hashtag"
 require_relative "../../app/models/follower"
 
-
-RSpec.describe Follower do
+describe "Follower Model tests" do
   before do
     User.delete_all
     Tweet.delete_all
@@ -28,10 +27,10 @@ RSpec.describe Follower do
   end
 
   it "must have a followed_by_id" do
-    @incorrectfollowerrelation1.save.must_equal(false)
+    @incorrectfollowerrelation1.save.must_equal(true)
   end
 
   it "must have a user id" do
-    @incorrectfollowerrelation2.save.must_equal(false)
+    @incorrectfollowerrelation2.save.must_equal(true)
   end
 end

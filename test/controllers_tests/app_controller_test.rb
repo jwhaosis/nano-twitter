@@ -1,13 +1,19 @@
 require_relative '../tests_helper'
-require 'rspec'
 require_relative "../../app/controllers/app_controller"
 require_relative "../../app/controllers/tweets_controller"
 require_relative "../../app/controllers/users_controller"
 
-RSpec.describe AppController do
-  it 'should load homepage' do
+# require_relative "../../app/controllers/app_controller"
+# require 'minitest/autorun'
+require 'rack/test'
+
+# require_relative "../../app/controllers/tweets_controller"
+# require_relative "../../app/controllers/users_controller"
+
+describe "App Controller Test" do
+  it 'should load the home page' do
     get '/'
     assert last_response.ok?
-    last_response.body.must_include('home')
+    assert last_response.body.include?('home')
   end
 end
