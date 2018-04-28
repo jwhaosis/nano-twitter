@@ -1,3 +1,7 @@
+[![Heroku](https://heroku-badge.herokuapp.com/?app=scuteser)](https://scuteser.herokuapp.com)  
+
+<a href="https://codeclimate.com/github/jwhaosis/nano-twitter/maintainability"><img src="https://api.codeclimate.com/v1/badges/cc51915e6977d75f79fe/maintainability" /></a>
+
 #NanoTwitter App
 ##Authors
 Shu Lin Chan,
@@ -5,11 +9,11 @@ Priyanka Grover,
 James Wang
 COSI105B, Spring 2018
 
-###Heroku
+Heroku
 http://scuteser.herokuapp.com/
 
-###Portfolio page
-https://groverpriyanka.github.io/scuteser
+Heroku with load balancing or for mass test interface calls
+http://scutesermaster.herokuapp.com/
 
 ###To deploy
 clone this app from github: https://github.com/jwhaosis/nano-twitter
@@ -18,17 +22,24 @@ clone this app from github: https://github.com/jwhaosis/nano-twitter
 ``````bundle install``````
 2. To create the schema, run:
 `````rake db:migrate`````
-3. To seed the data, run:
-````rake db:seed````
-4. To start the server, run:
+3. To start the server, run:
 ````rackup````
+4. To seed the data, start the server then path to:
+````<localhost>/test/reset/standard?users=<u>&tweets=<t>&followers=<f>````
+Note: rake db:seed will give an incomplete set of records
+
+
+External parts of the project:
+- Portfolio (https://groverpriyanka.github.io/scuteser)- Priyanka
+- Load Balancer (https://github.com/jwhaosis/scutesermaster) - James
+- Database Backend (https://github.com/jwhaosis/scuteserdatabase) - James
 
 
 ##Change History
 nanoTwitter 0.1: Foundation
 1. Dir - James
 2. DB Schema - Shu Lin
-3. UI Design - Priyanka
+3. UI Design - Priyanka, Shu Lin
 4. Routes - James
 
 nanoTwitter 0.2: MVP - First Minimal Implementation
@@ -39,21 +50,21 @@ nanoTwitter 0.2: MVP - First Minimal Implementation
 
 nanoTwitter 0.3: Core functionality
 1. Unit Tests - Priyanka
-2. Test Interface - Shu Lin, James
+2. Test Interface - James
 3. Codeship - James
 4. Standard Seeds - Shu Lin
 5. Autodeploy (Codeship to Heroku) - James
 
 nanoTwitter 0.4: Testing and Deployment
-1. Manual Test - Shu Lin 
+1. Manual Test - Shu Lin
 2. Test Interface - James
 3. Load Test - James
 4. More Tests - Priyanka
 
 nanoTwitter 0.5 - Inital Load Testing
 1. Load Testing  - James
-2. Loader - James and Priyanka
-3. New Web - James and Shu Lin
+2. Loader - James, Priyanka
+3. New Relic - James, Shu Lin
 4. Improve Schema - Shu Lin
 
 nanoTwitter 0.6 - Advanced Scaling
