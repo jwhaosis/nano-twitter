@@ -76,7 +76,7 @@ nanoTwitter 0.7 - Web Service API & Client
 1. API Routes - James
 2. Client Lib - James
 3. Client Lib Test - James
-4. Testing - Priyanka
+4. Unit Tests - Priyanka
 
 nanoTwitter 1.0: Completion
 1. Microservice - James, Shu Lin
