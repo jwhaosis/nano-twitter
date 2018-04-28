@@ -20,18 +20,13 @@ ActiveRecord::Schema.define(version: 20180220200832) do
     t.integer "followed_by_id"
   end
 
-  create_table "hashtag_tweet", force: :cascade do |t|
-    t.integer "hashtag_id"
-    t.integer "tweet_id"
-  end
-
   create_table "hashtags", force: :cascade do |t|
     t.string "hashtag"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "tweet_id"
     t.integer "user_id"
+    t.integer "tweet_id"
   end
 
   create_table "mentions", force: :cascade do |t|
@@ -46,10 +41,16 @@ ActiveRecord::Schema.define(version: 20180220200832) do
     t.integer "retweet_id"
   end
 
+  create_table "tweettags", force: :cascade do |t|
+    t.integer "hashtag_id"
+    t.integer "tweet_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "remember_digest"
   end
 
 end
