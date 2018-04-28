@@ -76,3 +76,5 @@ nanoTwitter 0.7 - Web Service API & Client
 1. API Routes - James
 2. Client Lib - James
 3. Client Lib Test - James
+4. Testing - Priyanka
+5. Portfolio - Priyanka
