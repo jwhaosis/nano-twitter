@@ -30,7 +30,7 @@ Note: rake db:seed will give an incomplete set of records
 
 
 External parts of the project:
-- Portfolio (https://groverpriyanka.github.io/scuteser)- Priyanka
+- Portfolio (https://groverpriyanka.github.io/scuteser) - Priyanka
 - Load Balancer (https://github.com/jwhaosis/scutesermaster) - James
 - Database Backend (https://github.com/jwhaosis/scuteserdatabase) - James
 
