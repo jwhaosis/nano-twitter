@@ -6,5 +6,5 @@ require_relative '../app'
 
 # require 'rspec'
 
-# enable :sessions
+enable :sessions
 include Rack::Test::Methods
